@@ -108,6 +108,8 @@ function slideClicked(){
   loadTrigger(picSizeRatio);
   showTrigger(picSizeRatio);
 
+  prepReading(slideCount);
+
   $("body").addClass("no-vscroll");
 }
 
@@ -225,4 +227,20 @@ function triggerClicked(e){
 
   }
 
+}
+
+function writeUserData(userId, name, email, imageUrl) {
+  firebase.database().ref('users/' + userId).set({
+    username: name,
+    email: email,
+    profile_picture : imageUrl
+  });
+}
+
+function prepReading(picnum){
+    var picRef = firebase.database().ref('p'+ (picnum) +'/');
+    picRef.on('value', (snapshot) => {
+      var data = snapshot.val();
+      console.log(data.trig0);
+    });
 }
