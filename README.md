@@ -7,6 +7,7 @@ wip is here https://nuink.github.io/TisikijinWEB/
 comment<br>
 more flexible for any window sizes<br>
 for mobilephone<br>
+視点ボックスを画面内に確定で収まるように表示させる<br>
 
 
 ## 不具合
