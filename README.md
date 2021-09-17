@@ -3,7 +3,11 @@
 wip is here https://nuink-org.github.io/TisikijinWEB/
 
 ## Todo
-comment
+<s>like</s><br>
+comment<br>
+more flexible for any window sizes<br>
+for mobilephone<br>
+
 
 ## 不具合
 ・Likeをつけたあと視点のボックス閉じてもう一回開くとLikeの状態が失われたまま数は増えてるよ<br>
