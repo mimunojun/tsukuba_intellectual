@@ -27,12 +27,14 @@ window.onload = function(){
 
 
 
+
 imageJustSize();
 
 window.addEventListener('resize', imageJustSize);
 
 //読み込み完了時
 window.onload = function () {
+    prepReading();
 };
 
 var slideShow = $("#sshow");
@@ -40,10 +42,12 @@ var slidePointDiv = $("#points")
 var slidePoint = $(".slide-point");
 var modalOverlay = $('<div id="modal-overlay" href="javascript:" onclick="bgClicked();"></div>').appendTo("body");
 var picTriggers = [];
+var dbPicRefs = [];
 var slidePoints = [];
 var slideCount = 0;
 var picDiv = $('<div id="pic-div"></div>').appendTo("body");
 var mainPic = $('<img id="main-pic" onclick="pictureClicked();">').appendTo(picDiv);
+var picRef;
 
 //data: [pos1,pos2,[title,comment,speciality,name]]
 
@@ -105,10 +109,13 @@ function slideClicked(){
   picDiv.fadeIn();
   mainPic.fadeIn("slow");
 
+
+
   loadTrigger(picSizeRatio);
   showTrigger(picSizeRatio);
 
-  prepReading(slideCount);
+
+
 
   $("body").addClass("no-vscroll");
 }
@@ -129,11 +136,13 @@ function bgClicked(){
 }
 
 function loadTrigger(picSizeRatio){
-  for(let i=0; i<picTriggerData[slideCount].length; i++){
-    var x1 = picTriggerData[slideCount][i][0][0];
-    var y1 = picTriggerData[slideCount][i][0][1];
-    var x2 = picTriggerData[slideCount][i][1][0];
-    var y2 = picTriggerData[slideCount][i][1][1];
+  for(let i=0; dbPicRefs["p" + slideCount]["trig"+i]!=null; i++){
+
+
+    var x1 = dbPicRefs["p" + slideCount]["trig"+i].trigpos.split(',')[0];
+    var y1 = dbPicRefs["p" + slideCount]["trig"+i].trigpos.split(',')[1];
+    var x2 = dbPicRefs["p" + slideCount]["trig"+i].trigpos.split(',')[2];
+    var y2 = dbPicRefs["p" + slideCount]["trig"+i].trigpos.split(',')[3];
 
     var cssTop = y1 * picSizeRatio;
     var cssLeft = x1 * picSizeRatio;
@@ -197,6 +206,9 @@ function triggerClicked(e){
   var obj = $(event.target);
   var id = obj.attr('js-id');
   var div = $('<div id="comment-box"></div>');
+  var trigname = dbPicRefs["p" + slideCount]["trig" + id]["trigname"];
+  var trignameDiv = $('<div class="comment-trigname"></div>').appendTo(div);
+  var trignameP =  $('<p></p>').html(trigname).appendTo(trignameDiv);
   $("body").append(div);
   div.fadeIn();
   mousePos = [e.clientX, e.clientY];
@@ -211,19 +223,27 @@ function triggerClicked(e){
   }else{
     div.css('left', mousePos[0] + 100);
   }
-
-  for(let i=0; i<picTriggerData[slideCount][id][2].length; i++){
+  for(let i=0; dbPicRefs["p" + slideCount]["trig" + id]["com"+i]!=null; i++){
     var newdiv = $('<div class="comment-div"></div>').appendTo("#comment-box");
-    var title = picTriggerData[slideCount][id][2][i][0];
-    var text = picTriggerData[slideCount][id][2][i][1];
-    var speciality = picTriggerData[slideCount][id][2][i][2];
-    var name = picTriggerData[slideCount][id][2][i][3];
+    newdiv.attr("js-com-id",String(i));
+    newdiv.attr("js-trig-id",String(id));
+    var title = dbPicRefs["p" + slideCount]["trig" + id]["com"+i]["title"];
+    var text = dbPicRefs["p" + slideCount]["trig" + id]["com"+i]["text"];
+    var speciality = dbPicRefs["p" + slideCount]["trig" + id]["com"+i]["speciality"];
+    var name = dbPicRefs["p" + slideCount]["trig" + id]["com"+i]["name"];
+    var like = dbPicRefs["p" + slideCount]["trig" + id]["com"+i]["like"];
 
     var specialityP = $('<p class="comment-speciality"></p>').html(speciality).appendTo(newdiv);
     var nameP = $('<p class="comment-name"></p>').html(name).appendTo(newdiv);
 
     var titleP = $('<p class="comment-title"></p>').html(title).appendTo(newdiv);
     var textP = $('<p class="comment-text"></p>').html(text).appendTo(newdiv);
+
+    var likeButton =  $('<i class="fas fa-thumbs-up comment-like-button" href="javascript:" liked="false"></i>').appendTo(newdiv);
+    likeButton.on('mousedown', likeClicked);
+    var likeCount =  $('<span class ="comment-like-count"></span>').html("  "+like).appendTo(newdiv);
+
+
 
   }
 
@@ -237,10 +257,56 @@ function writeUserData(userId, name, email, imageUrl) {
   });
 }
 
-function prepReading(picnum){
-    var picRef = firebase.database().ref('p'+ (picnum) +'/');
+function prepReading(){
+    picRef = firebase.database().ref();
     picRef.on('value', (snapshot) => {
-      var data = snapshot.val();
-      console.log(data.trig0);
+        dbPicRefs = snapshot.val();
+        console.log(dbPicRefs);
+        //console.log(trig1);
     });
+}
+
+function likeClicked(){
+  var target = $(event.target);
+  var div = target.parent();
+  var comId = div.attr("js-com-id");
+  var trigId = div.attr("js-trig-id");
+  var liked = target.attr("liked");
+  var like = dbPicRefs["p" + slideCount]["trig" + trigId]["com"+comId]["like"];
+
+  if(liked == "false"){
+    target.css("color","var(--accent)");
+    target.attr("liked","true");
+    like += 1;
+    target.hover(
+      function(){
+        target.css("color","var(--accent)");
+      },
+      function(){
+        target.css("color","var(--accent)");
+      }
+    );
+
+  }else{
+    target.css("color","white");
+    target.attr("liked","false");
+    like -= 1;
+    target.hover(
+      function(){
+        target.css("color","white");
+      },
+      function(){
+        target.css("color","gray");
+      }
+    );
+  }
+
+
+  picRef.child("p" + slideCount+"/"+"trig"+trigId+"/com"+comId).update({
+    "like": like
+  });
+  div.find(".comment-like-count").html(like);
+  //console.log(dbPicRefs["p" + slideCount]["trig" + trigId]["com"+comId]["like"]);
+
+
 }

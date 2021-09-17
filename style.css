@@ -276,6 +276,7 @@ body{
   text-decoration-color: #1a0dab;
   font-weight:300;
   margin-left: 30px;
+  padding-bottom: 20px;
 }
 
 #footer{
@@ -363,6 +364,13 @@ body{
   text-align: left;
 }
 
+.comment-trigname{
+  color:white;
+  font-size: 22px;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
 .comment-speciality{
   display: inline-block;
   color:white;
@@ -400,7 +408,28 @@ body{
   margin: 20px;
 }
 
+.comment-like-button{
+  margin-left: 20px;
+  color:gray;
+  transition: .1s;
+}
+
+.comment-like-button:hover{
+  color: white;
+}
+
+.comment-like-count{
+  color: gray;
+  margin-left: .5em;
+  font-size: 20px;
+}
+
+
 .comment-div{
   padding: 10px;
   border: gray solid 1px;
+}
+
+.white{
+  color: white;
 }
