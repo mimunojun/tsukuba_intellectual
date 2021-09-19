@@ -34,7 +34,9 @@ window.addEventListener('resize', imageJustSize);
 
 //読み込み完了時
 window.onload = function () {
-    prepReading();
+    prepReading();  //DBreading
+
+
 };
 
 var slideShow = $("#sshow");
@@ -51,20 +53,20 @@ var picRef;
 
 //data: [pos1,pos2,[title,comment,speciality,name]]
 
-picTriggerData = [
-  [[[125,635],[651,754],[["量えっぐ", "こんな並んでんの見たこと無い", "並ぶの苦手専門家" , "みむら"],["鉄だ！", "食べて鉄分補給しようや", "鉄分足りてない学", "みむら"]]], [[650,50],[750,750],[["でかーーい！", "でっっっっっか", "小さいマン", "みむら"]]]],
-  [[[650,515],[698,528],[["ここにCD入れるん？", "マジか　てかWindows 10やし", "無知専門家" , "みむら"]]], [[22,335],[61,432],[["高ーーーーい！", "背たっっっっっか", "小さいマン", "みむら"]]]],
-  [[[490,226],[610,354],[["エー！", "これもしかしてAやん！これもしかしてAやん！これもしかしてAやん！これもしかしてAやん！これもしかしてAやん！これもしかしてAやん！これもしかしてAやん！これもしかしてAやん！これもしかしてAやん！これもしかしてAやん！これもしかしてAやん！これもしかしてAやん！これもしかしてAやん！", "行数テスト", "みむら"]]]],
-  [],
-  [],
-  [],
-  [],
-  [],
-  [],
-  [],
-  [],
-  [],
-];
+// picTriggerData = [
+//   [[[125,635],[651,754],[["量えっぐ", "こんな並んでんの見たこと無い", "並ぶの苦手専門家" , "みむら"],["鉄だ！", "食べて鉄分補給しようや", "鉄分足りてない学", "みむら"]]], [[650,50],[750,750],[["でかーーい！", "でっっっっっか", "小さいマン", "みむら"]]]],
+//   [[[650,515],[698,528],[["ここにCD入れるん？", "マジか　てかWindows 10やし", "無知専門家" , "みむら"]]], [[22,335],[61,432],[["高ーーーーい！", "背たっっっっっか", "小さいマン", "みむら"]]]],
+//   [[[490,226],[610,354],[["エー！", "これもしかしてAやん！これもしかしてAやん！これもしかしてAやん！これもしかしてAやん！これもしかしてAやん！これもしかしてAやん！これもしかしてAやん！これもしかしてAやん！これもしかしてAやん！これもしかしてAやん！これもしかしてAやん！これもしかしてAやん！これもしかしてAやん！", "行数テスト", "みむら"]]]],
+//   [],
+//   [],
+//   [],
+//   [],
+//   [],
+//   [],
+//   [],
+//   [],
+//   [],
+// ];
 
 //スライド下の点の生成
 for(let i=0; i<11; i++){
@@ -133,6 +135,10 @@ function bgClicked(){
 
   $("body").removeClass("no-vscroll");
   removeTrigger();
+  $(".comment-box").fadeOut().queue(function(){
+    this.remove();
+  });
+
 }
 
 function loadTrigger(picSizeRatio){
@@ -190,43 +196,43 @@ function makePicDiv(picAspRatio){
 }
 
 function pictureClicked(){
-
-  $("#comment-box").fadeOut().queue(function(){
+  $(".comment-box").fadeOut().queue(function(){
     this.remove();
   });
-
-
 }
 
 function triggerClicked(e){
 
-  $("#comment-box").remove();
+  $(".comment-box").remove();
 
 
   var obj = $(event.target);
   var id = obj.attr('js-id');
-  var div = $('<div id="comment-box"></div>');
+  var div = $('<div class="comment-box"></div>');
+  div.attr('trig-id', id);
+  //div.on('mousedown.commentBox', mainCommentBoxClicked);
   var trigname = dbPicRefs["p" + slideCount]["trig" + id]["trigname"];
   var trignameDiv = $('<div class="comment-trigname"></div>').appendTo(div);
   var trignameP =  $('<p></p>').html(trigname).appendTo(trignameDiv);
   $("body").append(div);
   div.fadeIn();
   mousePos = [e.clientX, e.clientY];
-  if(mousePos[1] > window.innerHeight / 2){
+  if(mousePos[1] > window.innerHeight / 2){ //y
     div.css('top', mousePos[1] - 300);
   }else{
-    div.css('top', mousePos[1]);
+    div.css('top', mousePos[1] - 120);
   }
 
-  if(mousePos[0] > window.innerWidth / 2){
-    div.css('left', mousePos[0] - (100 + 500));
+  if(mousePos[0] > window.innerWidth / 2){  //x
+    div.css('left', mousePos[0] - (100 + 420));
   }else{
     div.css('left', mousePos[0] + 100);
   }
   for(let i=0; dbPicRefs["p" + slideCount]["trig" + id]["com"+i]!=null; i++){
-    var newdiv = $('<div class="comment-div"></div>').appendTo("#comment-box");
+    var newdiv = $('<div class="comment-div"></div>').appendTo(div);
     newdiv.attr("js-com-id",String(i));
     newdiv.attr("js-trig-id",String(id));
+    newdiv.attr("com-from","intellectual");
     var title = dbPicRefs["p" + slideCount]["trig" + id]["com"+i]["title"];
     var text = dbPicRefs["p" + slideCount]["trig" + id]["com"+i]["text"];
     var speciality = dbPicRefs["p" + slideCount]["trig" + id]["com"+i]["speciality"];
@@ -242,10 +248,34 @@ function triggerClicked(e){
     var likeButton =  $('<i class="fas fa-thumbs-up comment-like-button" href="javascript:" liked="false"></i>').appendTo(newdiv);
     likeButton.on('mousedown', likeClicked);
     var likeCount =  $('<span class ="comment-like-count"></span>').html("  "+like).appendTo(newdiv);
-
-
-
   }
+
+  for(let i=0; dbPicRefs["p" + slideCount]["trig" + id]["usercom"+i]!=null; i++){
+    var newdiv = $('<div class="comment-div"></div>').appendTo(div);
+    newdiv.attr("js-com-id",String(i));
+    newdiv.attr("js-trig-id",String(id));
+    newdiv.attr("com-from","user");
+    var title = dbPicRefs["p" + slideCount]["trig" + id]["usercom"+i]["title"];
+    var text = dbPicRefs["p" + slideCount]["trig" + id]["usercom"+i]["text"];
+    var speciality = dbPicRefs["p" + slideCount]["trig" + id]["usercom"+i]["speciality"];
+    var name = dbPicRefs["p" + slideCount]["trig" + id]["usercom"+i]["name"];
+    var like = dbPicRefs["p" + slideCount]["trig" + id]["usercom"+i]["like"];
+
+    var specialityP = $('<p class="comment-speciality com-from-user"></p>').html(speciality).appendTo(newdiv);
+    var nameP = $('<p class="comment-name"></p>').html(name).appendTo(newdiv);
+
+    var titleP = $('<p class="comment-title com-from-user"></p>').html(title).appendTo(newdiv);
+    var textP = $('<p class="comment-text"></p>').html(text).appendTo(newdiv);
+
+    var likeButton =  $('<i class="fas fa-thumbs-up comment-like-button" href="javascript:" liked="false"></i>').appendTo(newdiv);
+    likeButton.on('mousedown', likeClicked);
+    var likeCount =  $('<span class ="comment-like-count"></span>').html("  "+like).appendTo(newdiv);
+  }
+
+
+
+  var newComButton = $('<button class="new-com-button">新たな視点を投稿する</button>').appendTo(div);
+  newComButton.on('mousedown', newComButtonClicked);
 
 }
 
@@ -262,6 +292,7 @@ function prepReading(){
     picRef.on('value', (snapshot) => {
         dbPicRefs = snapshot.val();
         console.log(dbPicRefs);
+
         //console.log(trig1);
     });
 }
@@ -272,7 +303,13 @@ function likeClicked(){
   var comId = div.attr("js-com-id");
   var trigId = div.attr("js-trig-id");
   var liked = target.attr("liked");
-  var like = dbPicRefs["p" + slideCount]["trig" + trigId]["com"+comId]["like"];
+  var like;
+
+  if(div.attr("com-from") == "intellectual"){
+    like = dbPicRefs["p" + slideCount]["trig" + trigId]["com"+comId]["like"];
+  }else{
+    like = dbPicRefs["p" + slideCount]["trig" + trigId]["usercom"+comId]["like"];
+  }
 
   if(liked == "false"){
     target.css("color","var(--accent)");
@@ -302,11 +339,181 @@ function likeClicked(){
   }
 
 
-  picRef.child("p" + slideCount+"/"+"trig"+trigId+"/com"+comId).update({
-    "like": like
-  });
+
+
+  if(div.attr("com-from") == "intellectual"){
+    picRef.child("p" + slideCount+"/"+"trig"+trigId+"/com"+comId).update({
+      "like": like
+    });
+  }else{
+    picRef.child("p" + slideCount+"/"+"trig"+trigId+"/usercom"+comId).update({
+      "like": like
+    });
+  }
+
   div.find(".comment-like-count").html(like);
   //console.log(dbPicRefs["p" + slideCount]["trig" + trigId]["com"+comId]["like"]);
+}
 
+function newComButtonClicked(){
+  var trigId = $(event.target).parent().attr('trig-id');
+  var trigname = dbPicRefs["p" + slideCount]["trig" + trigId]["trigname"];
+  var description_text = "あなたならこの"+trigname+"にどのような視点を与えますか。<b>あなたならではの視点</b>を書いてみてください。";
+  var caution_text = [
+    "<b>以下のいずれかにあてはまるコメントは禁止されています。</b>",
+    "・第三者を攻撃するようなもの",
+    "・公序良俗に反するもの",
+    "・明らかに内容に意味が無いもの",
+    "・その他不適切だと判断されるもの"
+  ]
+  if($('.new-com-div').length == 0){
+    var div = $('<div class="comment-box new-com-div"></div>').appendTo("body");
+    div.attr('trig-id', trigId);
+    var title = $('<p class="new-com-title"></p>').html("新たな視点の投稿").appendTo(".new-com-div");
+    var description = $('<p class="new-com-description"></p>').html(description_text).appendTo(".new-com-div");
+    var cautionDiv = $('<div class="new-com-caution-div"></div>').appendTo(".new-com-div");
+    for(var i=0; i<caution_text.length; i++){
+      var caution = $('<p class="new-com-caution"></p>').html(caution_text[i]).appendTo(cautionDiv);
+    }
+    $('<div class="nice-wrap"><input class="nice-textbox" id="tb_speciality" type="text"/><label class="nice-label" >あなたを一言で言うと (例: 靴マニア, 建築デザイン好き, など)</label></div>').appendTo(".new-com-div");
+    $('<div class="nice-wrap"><input class="nice-textbox" id="tb_name" type="text"/><label class="nice-label" >あなたのニックネーム</label></div>').appendTo(".new-com-div");
+    $('<div class="nice-wrap"><input class="nice-textbox" id="tb_title" type="text"/><label class="nice-label" >視点のタイトル</label></div>').appendTo(".new-com-div");
+    $('<div class="nice-wrap"><textarea rows=5 class="nice-textbox" id="tb_comment" type="text"/><label class="nice-label" >どんな視点？</label></div>').appendTo(".new-com-div");
+
+    var tb_speciality = $("#tb_speciality");
+    var tb_name = $("#tb_name");
+    var tb_title = $("#tb_title");
+    var tb_comment = $("#tb_comment");
+
+    $('.nice-textbox').blur(function() {
+        if($(this).val().length === 0){
+          $(this).parent().find(".nice-label").removeClass("focus");
+        }
+        else {  }
+      })
+      .focusin(function(e) {
+        $(":focus").parent().find(".nice-label").addClass("focus");
+      });
+
+    var submitButton = $('<button type="button" class="new-com-button new-com-submit">投稿<button>').appendTo(".new-com-div");
+
+    submitButton.click(function(){
+      if(tb_speciality.val().length * tb_name.val().length * tb_title.val().length * tb_comment.val().length != 0){
+        preSubmitButtonClicked(tb_speciality.val(), tb_name.val(), tb_title.val(), tb_comment.val());
+      }else{
+        if(tb_speciality.val().length == 0){
+          tb_speciality.css('background-color', 'var(--caution)');
+          $(function(){
+            setTimeout(function(){
+              tb_speciality.css('background-color', '#fff');
+            },500);
+          });
+        }
+        if(tb_name.val().length == 0){
+          tb_name.css('background-color', 'var(--caution)');
+          $(function(){
+            setTimeout(function(){
+              tb_name.css('background-color', '#fff');
+            },500);
+          });
+        }
+        if(tb_title.val().length == 0){
+          tb_title.css('background-color', 'var(--caution)');
+          $(function(){
+            setTimeout(function(){
+              tb_title.css('background-color', '#fff');
+            },500);
+          });
+        }
+        if(tb_comment.val().length == 0){
+          tb_comment.css('background-color', 'var(--caution)');
+          $(function(){
+            setTimeout(function(){
+              tb_comment.css('background-color', '#fff');
+            },500);
+          });
+        }
+      }
+
+    });
+
+    div.fadeIn();
+  }
+}
+
+function mainCommentBoxClicked(){
+  if($('.new-com-div').length > 0){
+    $(".new-com-div").fadeOut().queue(function(){
+      this.remove();
+    });
+  }
+}
+
+function preSubmitButtonClicked(speciality, name, title, comment){
+  if($(".new-presubmitted-div").length == 0){
+    var confirmDiv = $('<div class="comment-box new-presubmitted-div"></div>').appendTo("body");
+    var confirmTextP = $('<p class="new-com-description"></p>').html("あなたの視点は以下のように表示され、公開されます。").appendTo(confirmDiv);
+
+    var newdiv = $('<div class="comment-div"></div>').appendTo(confirmDiv);
+    var specialityP = $('<p class="comment-speciality com-from-user"></p>').html(speciality).appendTo(newdiv);
+    var nameP = $('<p class="comment-name"></p>').html(name).appendTo(newdiv);
+    var titleP = $('<p class="comment-title com-from-user"></p>').html(title).appendTo(newdiv);
+    var textP = $('<p class="comment-text"></p>').html(comment).appendTo(newdiv);
+
+    var likeButton =  $('<i class="fas fa-thumbs-up comment-like-button" href="javascript:" liked="false"></i>').appendTo(newdiv);
+    var likeCount =  $('<span class ="comment-like-count"></span>').html(" 0").appendTo(newdiv);
+
+    var confirmButton = $('<button class="new-com-button new-com-presubmit">確認</button>').appendTo(confirmDiv);
+    var cancelButton = $('<p class="new-com-presubmit-cancel">キャンセル</p>').appendTo(confirmDiv);
+  }
+
+  confirmButton.click(function(){
+    submitButtonClicked(speciality, name, title, comment);
+  });
+  cancelButton.click(function(){
+    confirmDiv.fadeOut().queue(function(){
+      this.remove();
+    });
+  });
+
+  confirmDiv.fadeIn();
+}
+
+function submitButtonClicked(speciality, name, title, comment){
+  var picId = slideCount;
+  var trigId = $(".new-com-div").attr('trig-id');
+  var userComNum = dbPicRefs["p" + slideCount]["trig" + trigId]["userComNum"];
+
+
+  $(".comment-box").fadeOut().queue(function(){
+    this.remove();
+  });
+  var div = $('<div class="comment-box new-submitted-div"></div>').appendTo("body");
+  var text = $('<p class="new-submitted-text"></p>').html("投稿されました。").appendTo(".new-submitted-div");
+
+  $(function(){
+    setTimeout(function(){
+      $(".comment-box").fadeOut().queue(function(){
+        this.remove();
+      });
+    },2000);
+  });
+  // var commentNum = Object.keys(dbPicRefs["p" + slideCount]["trig" + trigId]).length - 3;
+
+
+  firebase.database().ref("p"+picId+"/trig"+trigId+"/usercom"+userComNum).set({
+    like: 0,
+    name: name,
+    speciality: speciality,
+    title: title,
+    text: comment
+  });
+
+  firebase.database().ref("p"+picId+"/trig"+trigId).update({
+    userComNum: userComNum + 1
+  });
+
+
+  div.fadeIn();
 
 }
