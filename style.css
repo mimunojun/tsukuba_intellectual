@@ -17,6 +17,12 @@ body{
   font-weight: 500;
   overflow-x: hidden;
   width: 100vw;
+
+}
+
+div{
+  z-index: 0;
+  position: relative;
 }
 
 .container{
@@ -128,18 +134,24 @@ body{
 }
 
 #main_video{
-  position: absolute;
-  top:0;
+  position: fixed;
+  top:50%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   height: 100%;
   overflow: hidden;
   object-fit:cover;
 }
 
 .video{
-  position:relative;
-  height: 100%;
+   z-index: -1;
+   top: 50%;
+   left: 50%;
+   /*縦横幅指定*/
+   width: 177.77777778vh; /* 16:9 の幅→16 ÷ 9＝ 177.77% */
+   height: 56.25vw; /* 16:9の幅 → 9 ÷ 16 = 56.25% */
+   min-height: 100%;
+   min-width: 100%;
 }
 
 #concept{
@@ -229,6 +241,7 @@ body{
 
 #shoutout{
   padding: 120px;
+  background-color: white;
 }
 
 #shoutout h2{
