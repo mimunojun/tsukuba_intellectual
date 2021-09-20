@@ -3,7 +3,9 @@
 wip is here https://nuink.github.io/TisikijinWEB/
 
 ## changelog
-### 9/19<br>
+### 9/20 made title-bg 'fixed' <br>
+・TIGWEBの背景オブジェクトが固定されてるのが良さげだったのでこっちにも適用した<br>
+### 9/19 new user comment implemented <br>
 ・一般の人の視点を投稿、表示できるように　教員のは紫色に対してこれはオレンジ色<br>
   -視点を表示する枠の最下部に投稿ボタンを表示->投稿フォームの表示->正常に入力されていれば確認画面->投稿完了<br>
 ・視点を表示する枠をスクロールするように　どんなに要素が長くなってもheightは一定にして画面からはみ出さないようにするため<br>
