@@ -375,7 +375,7 @@ function newComButtonClicked(){
     for(var i=0; i<caution_text.length; i++){
       var caution = $('<p class="new-com-caution"></p>').html(caution_text[i]).appendTo(cautionDiv);
     }
-    $('<div class="nice-wrap"><input class="nice-textbox" id="tb_speciality" type="text"/><label class="nice-label" >あなたを一言で言うと (例: 靴マニア, 建築デザイン好き, など)</label></div>').appendTo(".new-com-div");
+    $('<div class="nice-wrap"><input class="nice-textbox" id="tb_speciality" type="text"/><label class="nice-label" >あなたを一言で表すと (例: 靴マニア, 建築デザイン好き, など)</label></div>').appendTo(".new-com-div");
     $('<div class="nice-wrap"><input class="nice-textbox" id="tb_name" type="text"/><label class="nice-label" >あなたのニックネーム</label></div>').appendTo(".new-com-div");
     $('<div class="nice-wrap"><input class="nice-textbox" id="tb_title" type="text"/><label class="nice-label" >視点のタイトル</label></div>').appendTo(".new-com-div");
     $('<div class="nice-wrap"><textarea rows=5 class="nice-textbox" id="tb_comment" type="text"/><label class="nice-label" >どんな視点？</label></div>').appendTo(".new-com-div");
@@ -515,5 +515,38 @@ function submitButtonClicked(speciality, name, title, comment){
 
 
   div.fadeIn();
+}
+
+function howtoClicked(){
+  var conceptDiv = $("#concept");
+  var divHeight = conceptDiv.outerHeight(true);
+  var howtoInputhere = $(".howto-inputhere");
+  var button = $(event.target);
+
+  if($(".howto-container").length == 0){
+    button.html("歩き方を閉じる");
+    var howtoContainer = $('<div class="container howto-container"></div>').appendTo(".howto-inputhere");
+    var howtoContainer_1 = $('<div class="container howto-container howto-container-1"></div>').appendTo(".howto-inputhere");
+    $('<h2 class="howto-title">歩き方</h2>').appendTo(howtoContainer);
+    $('<p>あるきかたのせつめいせつめい</p>').appendTo(howtoContainer_1);
+    $('<p>あるきかたのせつめいせつめい</p>').appendTo(howtoContainer_1);
+    $('<p>あるきかたのせつめいせつめい</p>').appendTo(howtoContainer_1);
+    $('<p>多分もっと長くなる</p>').appendTo(howtoContainer_1);
+
+    var containerHeight = howtoContainer.outerHeight(true) + howtoContainer_1.outerHeight(true);
+
+    howtoInputhere.css("height", "0");
+    howtoContainer.fadeIn("slow");
+    howtoInputhere.animate({height: containerHeight});
+  }else{
+    button.html("歩き方を見る");
+    var howtoContainer = $(".howto-container");
+    howtoContainer.fadeOut("slow").queue(function(){
+
+    });;
+    howtoInputhere.animate({height: 0}, function(){
+      howtoContainer.remove();
+    });
+  }
 
 }
