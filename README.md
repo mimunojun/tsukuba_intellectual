@@ -22,6 +22,10 @@ more flexible for any window sizes<br>
 for mobilephone<br>
 もろもろ文の見直し<br>
 視点ボックスを画面内に確定で収まるように表示させる<br>
+画像のプリロード<br>
+データベースのロード後にページを表示する loading画面的なこと<br>
+footer<br>
+
 
 
 ## 不具合
