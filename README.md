@@ -3,6 +3,8 @@
 wip is here https://nuink.github.io/TisikijinWEB/
 
 ## changelog
+### 9/20_1 how-to implemented
+・「歩き方を見る」ボタンとその動作を概要下に追加<br>
 ### 9/20 made title-bg 'fixed' <br>
 ・TIGWEBの背景オブジェクトが固定されてるのが良さげだったのでこっちにも適用した<br>
 ### 9/19 new user comment implemented <br>
@@ -20,6 +22,10 @@ more flexible for any window sizes<br>
 for mobilephone<br>
 もろもろ文の見直し<br>
 視点ボックスを画面内に確定で収まるように表示させる<br>
+画像のプリロード<br>
+データベースのロード後にページを表示する loading画面的なこと<br>
+footer<br>
+
 
 
 ## 不具合
