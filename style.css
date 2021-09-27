@@ -228,24 +228,52 @@ div{
 }
 
 #content .sshow_container{
-  margin: 30px auto;
-  width: 80vw;
-  height: calc(60vh + 260);
-  position: relative;
-  text-align: center;
+
 }
 
 #content .sshow_div{
-  height: calc(60vh);
+  width: 100vw;
+  height: 46.67vw;
+  text-align: left;
+
+
 }
 
-#content #sshow{
-  transform: translateX(-50%);
-  height: calc(60vh);
-  width: auto;
+#content .sshow{
+  width: 100%;
+  position: relative;
+  background-color: transparent;
+  transition: .2s;
+}
+
+#content .sshow:hover{
+  background-color: white;
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+}
+
+#content .pic-div{
+  width: 70vw;
+  height: 46vw;
+  overflow: hidden;
+
   cursor: pointer;
   position: absolute;
+  border-radius: 30px;
+  margin: 0 2vw;
+  background-color: white;
+
 }
+
+#content .sshow-button{
+  position: absolute;
+  width: 70vw;
+  height: 46.67vw;
+  z-index: 2;
+  top: 0px;
+  /* border: 2px blue solid; */
+}
+
 
 #content .slidebutton{
   position: absolute;
@@ -268,6 +296,19 @@ div{
   height: 20px;
   border-radius: 50%;
   background: gray;
+}
+.flickity-page-dots {
+  bottom: -40px;
+}
+.flickity-page-dots .dot {
+  width: 24px;
+  height: 24px;
+  opacity: 1;
+  background-color: gray;
+}
+/* fill-in selected dot */
+.flickity-page-dots .dot.is-selected {
+  background: white;
 }
 
 #content #points{

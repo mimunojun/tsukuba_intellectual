@@ -7,13 +7,7 @@ function imageJustSize() {
 }
 
 
-function imageJustSize() {
-  var title = document.getElementById('title');
-  var winH = window.innerHeight;
-  title.style.height = winH + 'px';
-}
-
-
+var images = new Array();
 var slideImg = new Array("img/00.jpg","img/01.jpg","img/02.jpeg","img/03.jpeg","img/04.jpg","img/05.jpg","img/06.jpg","img/07.jpg","img/08.jpg","img/09.jpeg","img/10.jpeg",);
 window.onload = function(){
 
@@ -30,6 +24,7 @@ window.onload = function(){
 
 imageJustSize();
 
+
 window.addEventListener('resize', imageJustSize);
 
 //読み込み完了時
@@ -38,6 +33,8 @@ window.onload = function () {
 
 
 };
+
+prepImages();
 
 var slideShow = $("#sshow");
 var slidePointDiv = $("#points")
@@ -69,16 +66,18 @@ var picRef;
 // ];
 
 //スライド下の点の生成
-for(let i=0; i<11; i++){
-  var slidePointClone = slidePoint.clone().appendTo("#points");
-  slidePointClone.css("background-color", "gray");
-  slidePointClone.css("position", "absolute");
-  slidePointClone.css("left", 40*i);
-  slidePointDiv.css("width",20*21+"px");
-  slidePoints.push(slidePointClone);
-  slidePoints[0].css("background-color","white");
-}
-slidePoint.remove();
+// for(let i=0; i<11; i++){
+//   var slidePointClone = slidePoint.clone().appendTo("#points");
+//   slidePointClone.css("background-color", "gray");
+//   slidePointClone.css("position", "absolute");
+//   slidePointClone.css("left", 40*i);
+//   slidePointDiv.css("width",20*21+"px");
+//   slidePoints.push(slidePointClone);
+//   slidePoints[0].css("background-color","white");
+// }
+// slidePoint.remove();
+
+
 
 
 function slideLeft(){
@@ -550,3 +549,224 @@ function howtoClicked(){
   }
 
 }
+
+function prepImages(){
+  for(var i=0; i<slideImg.length; i++){
+    var newImg = $('<img class="sshow" src="'+slideImg[i]+'">');
+    images.push(newImg);
+  }
+}
+
+
+
+$(window).on('load', function() {
+  //prepSlideshow();
+  flickityData = $('.sshow_div').flickity({
+    // options
+    cellAlign: 'center',
+    contain: false,
+    wrapAround: true,
+    prevNextButtons: false,
+  }).data('flickity');
+
+  addFlickity();
+});
+
+function prepSlideshow(){
+
+  slideDiv = $("#sshow_div");
+  var slideWidth = $(window).width()*0.75;
+  var picCenterDiv = $('<div class="pic-div" id="pic-center"></div>').appendTo(slideDiv);
+  var picRightDiv = $('<div class="pic-div" id="pic-right"></div>').appendTo(slideDiv);
+  var picLeftDiv = $('<div class="pic-div" id="pic-left"></div>').appendTo(slideDiv);
+  var picCenter = images[0].appendTo(picCenterDiv);
+  var picRight = images[1].appendTo(picRightDiv);
+  var picLeft = images[10].appendTo(picLeftDiv);
+
+
+  var rightButton = $('<div class="sshow-button"></div>').appendTo(slideDiv);
+  var leftButton = $('<div class="sshow-button"></div>').appendTo(slideDiv);
+
+  picRightDiv.css("left", slideWidth);
+  picLeftDiv.css("left", -slideWidth);
+  rightButton.css("left", slideWidth);
+  leftButton.css("left", -slideWidth);
+
+  $(window).resize(function(){
+    slideWidth = $(window).width()*0.75;
+    picRightDiv.css("left", slideWidth);
+    picLeftDiv.css("left", -slideWidth);
+    rightButton.css("left", slideWidth);
+    leftButton.css("left", -slideWidth);
+  });
+
+  rightButton.on('mousedown', function(){
+    slideCount += 1;
+    var picNewDiv =  $('<div class="pic-div" id="pic-new"></div>').appendTo(slideDiv);
+    var picNew = images[slideCountNormalize(slideCount+1)].appendTo(picNewDiv);
+    picNewDiv.css("left", slideWidth * 2);
+
+
+    picRightDiv.velocity({left: 0});
+    picCenterDiv.velocity({left: -slideWidth});
+    picLeftDiv.velocity({left: -slideWidth * 2});
+    picNewDiv.velocity({left: slideWidth}).queue(function(){
+      picNewDiv.remove();
+      picLeftDiv.remove();
+      picCenterDiv.remove();
+      picRightDiv.remove();
+      picLeftDiv = $('<div class="pic-div" id="pic-left"></div>').appendTo(slideDiv);
+      picLeftDiv.css({left: -slideWidth});
+      picLeft = images[slideCountNormalize(slideCount-1)].appendTo(picLeftDiv);
+
+      picCenterDiv = $('<div class="pic-div" id="pic-center"></div>').appendTo(slideDiv);
+      picCenterDiv.css({left: 0});
+      picCenter = images[slideCountNormalize(slideCount)].appendTo(picCenterDiv);
+
+      picRightDiv = $('<div class="pic-div" id="pic-right"></div>').appendTo(slideDiv);
+      picRightDiv.css({left: slideWidth});
+      picRightDiv = images[slideCountNormalize(slideCount+1)].appendTo(picRightDiv);
+    });
+
+  });
+
+  // var centerWidth, leftWidth, rightWidth;
+  //
+  // picCenter.bind("load",function(){
+  //   centerWidth = picCenter.width();
+  //   leftWidth = picLeft.width();
+  //   rightWidth = picRight.width();
+  //   picRight.css("left",centerWidth+30+"px");
+  //   picLeft.css("left",-(leftWidth+30)+"px");
+  //   picCenter.css("left","0");
+  //   picCenter.on('mousedown', slideClicked);
+  // });
+  //
+  // $(window).resize(function() {
+  //   centerWidth = picCenter.width();
+  //   leftWidth = picLeft.width();
+  //   rightWidth = picRight.width();
+  //   picRight.css("left",centerWidth+30+"px");
+  //   picLeft.css("left",-(leftWidth+30)+"px");
+  //   picCenter.css("left",centerWidth / 2+"px");
+  // });
+  //
+  // $(document).on('click',"#pic-right",function(){
+  //
+  //   slideCount += 1;
+  //   slideCountPlus = slideCount + 1;
+  //   if(slideCount > slideImg.length-1){
+  //     slideCount -= (slideImg.length);
+  //   }
+  //   if(slideCountPlus > slideImg.length-1){
+  //     slideCountPlus -= (slideImg.length);
+  //   }
+  //   console.log("centerwidth: "+centerWidth+" leftWidth: "+leftWidth + " rightWidth: "+rightWidth);
+  //   var picNew = $('<img class="sshow">').appendTo(slideDiv);
+  //   picNew.css("left", centerWidth + 30 + rightWidth + 30 + "px");
+  //   picNew.attr("src", '');
+  //   picNew.on('load', function(){
+  //     centerWidth = $("#pic-center").width();
+  //     leftWidth = $("#pic-left").width();
+  //     rightWidth = $("#pic-right").width();
+  //     console.log("rightWidth: ", rightWidth);
+  //   });
+  //   picNew.attr("src", slideImg[slideCountPlus]);
+  //   var leftPosTarget = -(leftWidth+30+centerWidth)+"px";
+  //   var centerPosTarget =  -(30+centerWidth)+"px";
+  //   var rightPosTarget = "0px";
+  //   var newPosTarget = centerWidth+30+"px";
+  //   picLeft.animate({left: leftPosTarget}).queue(function(){
+  //     picLeft.remove();
+  //     picLeft = picCenter.attr("id","pic-left");
+  //     picCenter = picRight.attr("id","pic-center");
+  //     picRight = picNew.attr("id","pic-right");
+  //     slideDiv.css("width", rightWidth);
+  //   });
+  //   picCenter.animate({left: centerPosTarget});
+  //   picRight.animate({left: rightPosTarget});
+  //   picNew.animate({left: newPosTarget});
+  //
+  // });
+
+}
+
+
+
+
+function slideCountNormalize(v){
+  if(v >= slideImg.length){
+    v = v - slideImg.length;
+  }
+  if(v < 0){
+    v = v + slideImg.length;
+  }
+  return v;
+}
+
+function addFlickity(){
+  slideDiv = $(".sshow_container");
+  var rightButton = $('<div class="sshow-button"></div>').appendTo(slideDiv);
+  var leftButton = $('<div class="sshow-button"></div>').appendTo(slideDiv);
+
+
+  rightButton.css("left", '89vw');
+  leftButton.css("left", '-59vw');
+
+
+  $(window).resize(function(){
+    windowWidth = $(window).width();
+    rightButton.css("left", '89vw');
+    leftButton.css("left", '-59vw');
+
+  });
+
+  rightButton.on('mousedown', function(){
+    $('.sshow_div').flickity( 'next');
+  });
+
+  leftButton.on('mousedown', function(){
+    $('.sshow_div').flickity( 'previous');
+  });
+
+  $('.sshow_div').on( 'staticClick.flickity', function( event, pointer, cellElement, cellIndex ) {
+    slideCount = flickityData.selectedIndex;
+    slideClicked();
+  });
+}
+
+// var isStatic = 0 ;
+// var picCenters = document.getElementsByClassName("pic-div");
+//
+// for (var i=0; i < picCenters.length; i++) {
+//
+//   picCenters[i].onmousedown = function () {
+//     isStatic = 1;
+//     console.log("hi");
+//   }
+//
+//   picCenters[i].onmousemove = function () {
+//     isStatic = 0;
+//   }
+//
+//   picCenters[i].onmouseup = function () {
+//     if ( isStatic ) {
+//       console.log("hi");
+//     }
+//   }
+// }
+//
+// function picMouseDown(){
+//   isStatic = 1;
+//
+// }
+//
+// function picMouseMove(){
+//   isStatic = 0;
+// }
+//
+// function picMouseUp(){
+//   if ( isStatic ) {
+//     console.log("hi");
+//   }
+// }

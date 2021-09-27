@@ -16,6 +16,7 @@
 
   <!--css-->
   <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css" media="screen">
   <link rel="stylesheet" href="style.css">
 
   <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
@@ -89,13 +90,50 @@
 
     <div class="sshow_container">
       <div class="sshow_div" id="sshow_div">
+        <!--
         <img href="javascript:" onclick="slideClicked();" src="img/00.jpg" id="sshow">
+
         <a href="javascript:slideLeft();" class="fas fa-chevron-circle-left slidebutton" style="left: 5%"></a>
         <a href="javascript:slideRight();" class="fas fa-chevron-circle-right slidebutton" style="left: 95%"></a>
+      -->
+        <div class="pic-div" id="pic-center">
+          <img class="sshow" src="img/00.jpg">
+        </div>
+        <div class="pic-div" id="pic-center">
+          <img class="sshow" src="img/01.jpg">
+        </div>
+        <div class="pic-div" id="pic-center">
+          <img class="sshow" src="img/02.jpeg">
+        </div>
+        <div class="pic-div" id="pic-center">
+          <img class="sshow" src="img/03.jpeg">
+        </div>
+        <div class="pic-div" id="pic-center">
+          <img class="sshow" src="img/04.jpg">
+        </div>
+        <div class="pic-div" id="pic-center">
+          <img class="sshow" src="img/05.jpg">
+        </div>
+        <div class="pic-div" id="pic-center">
+          <img class="sshow" src="img/06.jpg">
+        </div>
+        <div class="pic-div" id="pic-center">
+          <img class="sshow" src="img/07.jpg">
+        </div>
+        <div class="pic-div" id="pic-center">
+          <img class="sshow" src="img/08.jpg">
+        </div>
+        <div class="pic-div" id="pic-center">
+          <img class="sshow" src="img/09.jpeg">
+        </div>
+        <div class="pic-div" id="pic-center">
+          <img class="sshow" src="img/10.jpeg">
+        </div>
+
       </div>
 
       <div id="points">
-        <span class="slide-point"></span>
+        <!-- <span class="slide-point"></span> -->
 
       </div>
 
@@ -170,7 +208,8 @@
 
 
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.1.0/velocity.js"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
   <script type="text/javascript" src="script.js"></script>
 </body>
 
