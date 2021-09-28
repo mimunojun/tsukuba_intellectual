@@ -3,6 +3,8 @@
 wip is here https://nuink.github.io/TisikijinWEB/
 
 ## changelog
+### 9/27 slideshow
+・整えたスライドショーを作成した Flickityを使用した<br>
 ### 9/20_1 how-to implemented
 ・「歩き方を見る」ボタンとその動作を概要下に追加<br>
 ### 9/20 made title-bg 'fixed' <br>
