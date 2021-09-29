@@ -37,25 +37,30 @@ window.onload = function () {
 let loadProgress = 0;
 
 const countUp = () =>{
-  $(".load-bar").css("width", loadProgress*1.2 + "%");
+  $(".load-bar").css("width", loadProgress*1.0 + "%");
+  console.log(loadProgress);
 
 }
 
 const loadIntervalId = setInterval(() =>{
   countUp();
 
-  if(dbPicRefs.length!=0){　
-    loadProgress = 100;
+  if(loadProgress == 100){
     $("#load-div").fadeOut("slow");
     $("#nav_bar").fadeIn();
     $("body").removeClass("no-vscroll");
-
     clearInterval(loadIntervalId);　//intervalIdをclearIntervalで指定している
+  }
+
+  if(dbPicRefs.length!=0){　
+    loadProgress = 100;
+
   }else{
-    if(loadProgress < 90){
+    if(loadProgress < 80){
       loadProgress += 12;
     }
   }
+
 }, 200);
 
 prepImages();
