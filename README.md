@@ -6,6 +6,8 @@ wip is here https://nuink.github.io/TisikijinWEB/
 ### 9/29 loading screen
 ・データベースにアクセスするまで閲覧できないようにするためのロード画面を実装した<br>
 ・90%になるまで200msごとに12%ずつ増やしていってデータベースにアクセスできたら100%にして表示します
+#### 1.1, 1.2
+・開発環境と実装時で見え方が違ったので調整した　まだ調整する必要あるかも<br>
 ### 9/27 slideshow
 ・整えたスライドショーを作成した Flickityを使用した<br>
 ### 9/20_1 how-to implemented
