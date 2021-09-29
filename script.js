@@ -46,10 +46,12 @@ const loadIntervalId = setInterval(() =>{
   countUp();
 
   if(loadProgress == 100){
-    $("#load-div").fadeOut("slow");
-    $("#nav_bar").fadeIn();
-    $("body").removeClass("no-vscroll");
-    clearInterval(loadIntervalId);　//intervalIdをclearIntervalで指定している
+    setTimeout(() =>{
+      $("#load-div").fadeOut("slow");
+      $("#nav_bar").fadeIn();
+      $("body").removeClass("no-vscroll");
+      clearInterval(loadIntervalId);　//intervalIdをclearIntervalで指定している
+    },600);
   }
 
   if(dbPicRefs.length!=0){　
@@ -62,6 +64,10 @@ const loadIntervalId = setInterval(() =>{
   }
 
 }, 200);
+
+
+
+
 
 prepImages();
 
