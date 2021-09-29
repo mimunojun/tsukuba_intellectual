@@ -42,6 +42,7 @@ div{
   width: 100%;
   z-index: 1;
   margin: 0 auto;
+  display: none;
 }
 
 #nav_bar #nav_list{
@@ -253,7 +254,7 @@ div{
 }
 
 #content .pic-div{
-  width: 70vw;
+  width: 78vw;
   height: 46vw;
   overflow: hidden;
 
@@ -414,7 +415,7 @@ div{
   top: 50%;
   left: 50%;
   height: 80vh;
-  width: auto;
+
   transform: translateX(-50%) translateY(-50%);
 }
 
@@ -691,4 +692,64 @@ b{
   text-align: center;
   margin: 0 auto;
   width: 10em;
+}
+
+#load-div{
+  z-index: 0;
+  background-color: black;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+}
+
+.text{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+}
+
+.white{
+  color: white;
+}
+
+.big{
+  font-size: 40px;
+}
+
+.load-bar-frame{
+  border-radius: 3px;
+  height: 6px;
+  width: 300px;
+  overflow: hidden;
+  position: fixed;
+  top: 57%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.load-bar{
+
+  background-color: white;
+  z-index: 0;
+  position: absolute;
+  height: 100%;
+  transition: .2s;
+
+}
+
+.load-message::after{
+  background-color: var(--accent);
+  bottom: -30px;
+  content: '';
+  display: block;
+  height: 6px;
+  left: -50px;
+  position: absolute;
+  transition: .1s all;
+  width: attr(data-width);
+
 }
