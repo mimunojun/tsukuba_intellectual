@@ -3,6 +3,8 @@
 wip is here https://nuink.github.io/TisikijinWEB/
 
 ## changelog
+### 10/02_2 triggers reposition
+・トリガー表示中にウィンドウサイズ変更により写真サイズが変更されたとき、トリガーがずれるのを修正しました<br>
 ### 10/02 smoothscroll
 ・スムーズスクロールの実装<br>
 ・「スクロールして下へ」のアイコンをクリックしたら下にスクロールするようにしました
