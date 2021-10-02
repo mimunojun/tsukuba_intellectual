@@ -38,7 +38,7 @@ let loadProgress = 0;
 
 const countUp = () =>{
   $(".load-bar").css("width", loadProgress*1.0 + "%");
-  console.log(loadProgress);
+  //console.log(loadProgress);
 
 }
 
@@ -805,3 +805,5 @@ function addFlickity(){
 //     console.log("hi");
 //   }
 // }
+
+var easeInOutQuad = new SmoothScroll('[data-easing="easeInOutQuad"]', {easing: 'easeInOutQuad'});

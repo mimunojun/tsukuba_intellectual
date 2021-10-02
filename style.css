@@ -43,7 +43,7 @@ div{
   z-index: 1;
   margin: 0 auto;
   display: none;
-  
+
 }
 
 #nav_bar #nav_list{
@@ -114,14 +114,21 @@ div{
   letter-spacing: .8em;
 }
 
-.scroll_message::before{
+.scroll-icon{
   position: absolute;
-  content: '\f13a';
-  font-family:'Font Awesome 5 Free';
-  font-weight: 900;
+  left: 50%;
   bottom: 30px;
   transform: translateX(-50%);
-  font-size: 50px;
+  font-size: 60px;
+  cursor: pointer;
+  color: var(--t-white);
+  display: block;
+  transition: .2s;
+}
+
+.scroll-icon:hover{
+  bottom: 25px;
+  font-size: 70px;
 }
 
 .tig{
