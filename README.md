@@ -3,6 +3,9 @@
 wip is here https://nuink.github.io/TisikijinWEB/
 
 ## changelog
+### 10/02_3 logo & responsive-preparing
+・ヘッダーにあったtigテキストをtigロゴに置換した<br>
+・レスポンシブの準備をした
 ### 10/02_2 triggers reposition
 ・トリガー表示中にウィンドウサイズ変更により写真サイズが変更されたとき、トリガーがずれるのを修正しました<br>
 ### 10/02 smoothscroll
