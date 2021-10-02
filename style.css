@@ -10,6 +10,11 @@
   --caution: #ff7d7d;
 }
 
+
+/* for pc */
+
+
+
 body{
   text-align: center;
   font-family: 'Noto Sans JP', sans-serif;
@@ -17,12 +22,15 @@ body{
   font-weight: 500;
   overflow-x: hidden;
   width: 100vw;
-
 }
 
 div{
   z-index: 0;
   position: relative;
+}
+
+.no-hscroll{
+  overflow-x: hidden;
 }
 
 .container{
@@ -136,10 +144,14 @@ div{
   color: var(--t-white);
   text-align: left;
   top: 40px;
-  left:50px;
+  left: 50px;
   font-weight: 700;
   font-size: 25px;
   letter-spacing: .1em;
+}
+
+.tig-logo{
+  width: 350px;
 }
 
 #main_video{
@@ -251,12 +263,12 @@ div{
 #content .sshow{
   width: 100%;
   position: relative;
-  background-color: transparent;
+  background-color: white;
   transition: .2s;
 }
 
 #content .sshow:hover{
-  background-color: white;
+
   opacity: 0.8;
   filter: alpha(opacity=80);
 }
@@ -275,12 +287,12 @@ div{
 }
 
 #content .sshow-button{
+  cursor: pointer;
   position: absolute;
   width: 70vw;
   height: 46.67vw;
   z-index: 2;
   top: 0px;
-  /* border: 2px blue solid; */
 }
 
 
@@ -760,5 +772,47 @@ b{
   position: absolute;
   transition: .1s all;
   width: attr(data-width);
+
+}
+
+
+
+/* for mobilephone */
+@media screen and (max-width: 599px){
+
+  body{
+  }
+
+  #nav_bar{
+    display: none;
+  }
+
+  #nav_list{
+    display: none;
+  }
+
+  .name_txt{
+    font-size: 30px;
+    right: 10px;
+    top: 80px;
+  }
+
+  .tig-logo{
+    width: 50vw;
+
+  }
+
+  .tig{
+    top: 10px;
+    left: 10px;
+  }
+
+  .title_txt{
+    font-size: 75px;
+    writing-mode: vertical-rl;
+    text-orientation: sideways;
+    bottom: -30px;
+    left: -10px;
+  }
 
 }

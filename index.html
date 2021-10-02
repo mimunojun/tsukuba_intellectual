@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>0919</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+
 
   <!--google fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,6 +22,7 @@
   <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
   <script type="module" src="module.js"></script>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
 
 </head>
 
@@ -29,192 +30,193 @@
 </style>
 
 <body class="no-vscroll">
+  <div class="no-hscroll">
 
-  <div id="nav_bar">
-    <div id="nav_list">
-      <ul>
-        <li><a href="#title" data-easing="easeInOutQuad">トップ</a></li>
-        <li><a href="#concept" data-easing="easeInOutQuad">概要</a></li>
-        <li><a href="#content" data-easing="easeInOutQuad">知識人と歩く</a></li>
-        <li><a href="#shoutout" data-easing="easeInOutQuad">ご協力頂いた方々</a></li>
-      </ul>
-    </div>
-  </div>  <!-- nav_bar -->
-
-  <div id="title">
-    <div id="main_video_area">
-      <div id="main_video">
-        <video class="video" src="video/main.mp4" autoplay muted loop></video>
+    <div id="nav_bar">
+      <div id="nav_list">
+        <ul>
+          <li><a href="#title" data-easing="easeInOutQuad">トップ</a></li>
+          <li><a href="#concept" data-easing="easeInOutQuad">概要</a></li>
+          <li><a href="#content" data-easing="easeInOutQuad">知識人と歩く</a></li>
+          <li><a href="#shoutout" data-easing="easeInOutQuad">ご協力頂いた方々</a></li>
+        </ul>
       </div>
-    </div>
+    </div>  <!-- nav_bar -->
 
-    <a name="title"></a>
-    <div class="title_txt">
-      <p>筑波大の見方は、</p>
-      <p>人それぞれだ。</p>
-    </div>
-    <div class="name_txt">
-      <p>知識人と歩く筑波大学</p>
-    </div>
-    <div class="scroll_message">
-      <a class="fas fa-chevron-circle-down fa-7x scroll-icon" href="#concept" data-easing="easeInOutQuad"></a>
-      <p>スクロールして下へ</p>
-    </div>
-    <div class="tig">
-      <p>Nu ink.</p>
-      <p>TSUKUBA INNOVATION GALLERY</p>
-
-    </div>
-  </div>  <!-- title -->
-
-  <div id="concept">
-    <a name="concept"></a>
-    <h2>知識人と歩く筑波大学 <span style="font-size:36px">とは</span></h2>
-    <div class="container">
-      <p>概要概要概要概要</p>
-      <p>概要概要概要概要概要</p>
-      <p>概要概要概要概要</p>
-      <p>概要概要概要概要概</p>
-      <p>概要概要概要概要</p>
-      <p>概要　下の「歩き方」ボタン未実装</p>
-    </div>
-    <div class="howto-inputhere"></div>
-    <button class="concept-howto" href="javascript:" onclick="howtoClicked();">歩き方を見る</button>
-  </div>  <!-- concept -->
-
-  <div id="content">
-    <a name="content"></a>
-    <h2>知識人と歩く</h2>
-    <div class="container">
-      <p>視点の表示・いいね・ユーザによる視点の投稿/表示の実装</p>
-    </div>
-
-    <div class="sshow_container">
-      <div class="sshow_div" id="sshow_div">
-        <!--
-        <img href="javascript:" onclick="slideClicked();" src="img/00.jpg" id="sshow">
-
-        <a href="javascript:slideLeft();" class="fas fa-chevron-circle-left slidebutton" style="left: 5%"></a>
-        <a href="javascript:slideRight();" class="fas fa-chevron-circle-right slidebutton" style="left: 95%"></a>
-      -->
-        <div class="pic-div" id="pic-center">
-          <img class="sshow"  src="img/00.jpg">
+    <div id="title">
+      <div id="main_video_area">
+        <div id="main_video">
+          <video class="video" src="video/main.mp4" autoplay muted loop></video>
         </div>
-        <div class="pic-div" id="pic-center">
-          <img class="sshow" src="img/01.jpg">
-        </div>
-        <div class="pic-div" id="pic-center">
-          <img class="sshow" src="img/02.jpeg">
-        </div>
-        <div class="pic-div" id="pic-center">
-          <img class="sshow" src="img/03.jpeg">
-        </div>
-        <div class="pic-div" id="pic-center">
-          <img class="sshow" src="img/04.jpg">
-        </div>
-        <div class="pic-div" id="pic-center">
-          <img class="sshow" src="img/05.jpg">
-        </div>
-        <div class="pic-div" id="pic-center">
-          <img class="sshow" src="img/06.jpg">
-        </div>
-        <div class="pic-div" id="pic-center">
-          <img class="sshow" src="img/07.jpg">
-        </div>
-        <div class="pic-div" id="pic-center">
-          <img class="sshow" src="img/08.jpg">
-        </div>
-        <div class="pic-div" id="pic-center">
-          <img class="sshow" src="img/09.jpeg">
-        </div>
-        <div class="pic-div" id="pic-center">
-          <img class="sshow" src="img/10.jpeg">
-        </div>
-
       </div>
 
-      <div id="points">
-        <!-- <span class="slide-point"></span> -->
+      <a name="title"></a>
+      <div class="title_txt">
+        <p>筑波大の見方は、</p>
+        <p>人それぞれだ。</p>
+      </div>
+      <div class="name_txt">
+        <p>知識人と歩く筑波大学</p>
+      </div>
+      <div class="scroll_message">
+        <a class="fas fa-chevron-circle-down fa-7x scroll-icon" href="#concept" data-easing="easeInOutQuad"></a>
+        <p>スクロールして下へ</p>
+      </div>
+      <div class="tig">
+        <img class="tig-logo"  src="img/tig_logo.png">
 
       </div>
+    </div>  <!-- title -->
 
-    </div>
-
-  </div>  <!-- content -->
-
-  <div id="shoutout">
-    <a name="shoutout"></a>
-    <h2>ご協力頂いた方々</h2>
-    <div class="container">
-      <p>以下に示す方々に大変お世話になりました。ありがとうございました。(仮)</p>
-    </div>
-
-    <div class="container">
-
-      <div class="member">
-        <h3>あいうえ 修</h3>
-        <h4>あいうえお大学 准教授</h4>
-        <p>あいうえおの研究家です。そそっそっそっそそおそおそそいおしおしおいそいｓっそいそいそいそいそいそいそそっそっそっそそおそおそそいおしおしおいそいｓっそいそいそいそいそいそい</p>
-        <a href="https://google.com">あいうえお研究室</a>
-      </div>
-
-      <div class="member">
-        <h3>ささ しすせ</h3>
-        <h4>サ行変格活用大学 名誉教授</h4>
-        <p>笹の研究者です。そそっそっそっそそおそおそそいおしおしおいそいｓっそいそいそいそいそいそいそそっそっそっそそおそおそそいおしおしおいそいｓっそいそいそいそいそいそい</p>
-        <a href="https://google.com">サ行研究室</a>
-      </div>
-
-      <div class="member">
-        <h3>びょうどういん 守</h3>
-        <h4>守護</h4>
-        <p>京都を守ってます。そそっそっそっそそおそおそそいおしおしおいそいｓっそいそいそいそいそいそいそそっそっそっそそおそおそそいおしおしおいそいｓっそいそいそいそいそいそい</p>
-        <a href="https://google.com">まもる研究室</a>
-      </div>
-
-      <div class="member">
-        <h3>びょうどういん 守</h3>
-        <h4>守護</h4>
-        <p>京都を守ってます。そそっそっそっそそおそおそそいおしおしおいそいｓっそいそいそいそいそいそいそそっそっそっそそおそおそそいおしおしおいそいｓっそいそいそいそいそいそい</p>
-        <a href="https://google.com">まもらへん研究室</a>
-      </div>
-
-    </div>
-
-
-  </div>
-
-  <footer>
-    <div id="footer">
-
-
+    <div id="concept">
+      <a name="concept"></a>
+      <h2>知識人と歩く筑波大学 <span style="font-size:36px">とは</span></h2>
       <div class="container">
-        <div id="nav_footer">
-          <ul>
-            <li><a href="#title" data-easing="easeInOutQuad">トップ</a></li>
-            <li><a href="#concept" data-easing="easeInOutQuad">概要</a></li>
-            <li><a href="#content" data-easing="easeInOutQuad">知識人と歩く</a></li>
-            <li><a href="#shoutout" data-easing="easeInOutQuad">ご協力頂いた方々</a></li>
-          </ul>
+        <p>概要概要概要概要</p>
+        <p>概要概要概要概要概要</p>
+        <p>概要概要概要概要</p>
+        <p>概要概要概要概要概</p>
+        <p>概要概要概要概要</p>
+        <p>概要　下の「歩き方」ボタン未実装</p>
+      </div>
+      <div class="howto-inputhere"></div>
+      <button class="concept-howto" href="javascript:" onclick="howtoClicked();">歩き方を見る</button>
+    </div>  <!-- concept -->
+
+    <div id="content">
+      <a name="content"></a>
+      <h2>知識人と歩く</h2>
+      <div class="container">
+        <p>視点の表示・いいね・ユーザによる視点の投稿/表示の実装</p>
+      </div>
+
+      <div class="sshow_container">
+        <div class="sshow_div" id="sshow_div">
+          <!--
+          <img href="javascript:" onclick="slideClicked();" src="img/00.jpg" id="sshow">
+
+          <a href="javascript:slideLeft();" class="fas fa-chevron-circle-left slidebutton" style="left: 5%"></a>
+          <a href="javascript:slideRight();" class="fas fa-chevron-circle-right slidebutton" style="left: 95%"></a>
+        -->
+          <div class="pic-div" id="pic-center">
+            <img class="sshow"  src="img/00.jpg">
+          </div>
+          <div class="pic-div" id="pic-center">
+            <img class="sshow" src="img/01.jpg">
+          </div>
+          <div class="pic-div" id="pic-center">
+            <img class="sshow" src="img/02.jpeg">
+          </div>
+          <div class="pic-div" id="pic-center">
+            <img class="sshow" src="img/03.jpeg">
+          </div>
+          <div class="pic-div" id="pic-center">
+            <img class="sshow" src="img/04.jpg">
+          </div>
+          <div class="pic-div" id="pic-center">
+            <img class="sshow" src="img/05.jpg">
+          </div>
+          <div class="pic-div" id="pic-center">
+            <img class="sshow" src="img/06.jpg">
+          </div>
+          <div class="pic-div" id="pic-center">
+            <img class="sshow" src="img/07.jpg">
+          </div>
+          <div class="pic-div" id="pic-center">
+            <img class="sshow" src="img/08.jpg">
+          </div>
+          <div class="pic-div" id="pic-center">
+            <img class="sshow" src="img/09.jpeg">
+          </div>
+          <div class="pic-div" id="pic-center">
+            <img class="sshow" src="img/10.jpeg">
+          </div>
+
         </div>
+
+        <div id="points">
+          <!-- <span class="slide-point"></span> -->
+
+        </div>
+
+      </div>
+
+    </div>  <!-- content -->
+
+    <div id="shoutout">
+      <a name="shoutout"></a>
+      <h2>ご協力頂いた方々</h2>
+      <div class="container">
+        <p>以下に示す方々に大変お世話になりました。ありがとうございました。(仮)</p>
       </div>
 
       <div class="container">
-        <p>著作権のうんぬんとか</p>
-        <p>フッター未実装</p>
+
+        <div class="member">
+          <h3>あいうえ 修</h3>
+          <h4>あいうえお大学 准教授</h4>
+          <p>あいうえおの研究家です。そそっそっそっそそおそおそそいおしおしおいそいｓっそいそいそいそいそいそいそそっそっそっそそおそおそそいおしおしおいそいｓっそいそいそいそいそいそい</p>
+          <a href="https://google.com">あいうえお研究室</a>
+        </div>
+
+        <div class="member">
+          <h3>ささ しすせ</h3>
+          <h4>サ行変格活用大学 名誉教授</h4>
+          <p>笹の研究者です。そそっそっそっそそおそおそそいおしおしおいそいｓっそいそいそいそいそいそいそそっそっそっそそおそおそそいおしおしおいそいｓっそいそいそいそいそいそい</p>
+          <a href="https://google.com">サ行研究室</a>
+        </div>
+
+        <div class="member">
+          <h3>びょうどういん 守</h3>
+          <h4>守護</h4>
+          <p>京都を守ってます。そそっそっそっそそおそおそそいおしおしおいそいｓっそいそいそいそいそいそいそそっそっそっそそおそおそそいおしおしおいそいｓっそいそいそいそいそいそい</p>
+          <a href="https://google.com">まもる研究室</a>
+        </div>
+
+        <div class="member">
+          <h3>びょうどういん 守</h3>
+          <h4>守護</h4>
+          <p>京都を守ってます。そそっそっそっそそおそおそそいおしおしおいそいｓっそいそいそいそいそいそいそそっそっそっそそおそおそそいおしおしおいそいｓっそいそいそいそいそいそい</p>
+          <a href="https://google.com">まもらへん研究室</a>
+        </div>
+
       </div>
+
+
     </div>
-  </footer>
 
-  <div id="load-div">
-    <div class="container">
-      <p class="load-message text white big" data-width="10px">Loading...</p>
-      <!-- <div id="load-bar"></div> -->
-      <div class="load-bar-frame">
-        <div class="load-bar"></div>
+    <footer>
+      <div id="footer">
+
+
+        <div class="container">
+          <div id="nav_footer">
+            <ul>
+              <li><a href="#title" data-easing="easeInOutQuad">トップ</a></li>
+              <li><a href="#concept" data-easing="easeInOutQuad">概要</a></li>
+              <li><a href="#content" data-easing="easeInOutQuad">知識人と歩く</a></li>
+              <li><a href="#shoutout" data-easing="easeInOutQuad">ご協力頂いた方々</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="container">
+          <p>著作権のうんぬんとか</p>
+          <p>フッター未実装</p>
+        </div>
       </div>
+    </footer>
+
+    <div id="load-div">
+      <div class="container">
+        <p class="load-message text white big" data-width="10px">Loading...</p>
+        <!-- <div id="load-bar"></div> -->
+        <div class="load-bar-frame">
+          <div class="load-bar"></div>
+        </div>
 
 
+      </div>
     </div>
   </div>
 

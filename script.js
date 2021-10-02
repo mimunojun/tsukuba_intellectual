@@ -48,7 +48,9 @@ const loadIntervalId = setInterval(() =>{
   if(loadProgress == 100){
     setTimeout(() =>{
       $("#load-div").fadeOut("slow");
-      $("#nav_bar").fadeIn();
+      if($(window).width() >= 600){
+        $("#nav_bar").fadeIn();
+      }
       $("body").removeClass("no-vscroll");
       clearInterval(loadIntervalId);　//intervalIdをclearIntervalで指定している
     },600);
@@ -789,8 +791,17 @@ function addFlickity(){
 
   });
 
-  rightButton.on('mousedown', function(){
-    $('.sshow_div').flickity( 'next');
+  rightButton.on({
+    // 'mouseenter': function(){
+    //   $($(".sshow")[flickityData.selectedIndex + 1]).css("opacity","0.8");
+    // },
+    // 'mouseleave': function(){
+    //   $($(".sshow")[flickityData.selectedIndex + 1]).css("opacity","1.0");
+    // },
+    'mousedown': function(){
+      // $($(".sshow")[flickityData.selectedIndex + 1]).css("opacity","1.0");
+      $('.sshow_div').flickity( 'next');
+    }
   });
 
   leftButton.on('mousedown', function(){
@@ -840,3 +851,16 @@ function addFlickity(){
 // }
 
 var easeInOutQuad = new SmoothScroll('[data-easing="easeInOutQuad"]', {easing: 'easeInOutQuad'});
+
+//responsive
+$(window).on('load resize', function(){
+  if($(window).width() >= 600){
+    $("#nav_bar").show();
+    $(".name_txt p").html("知識人と歩く筑波大学");
+    $(".scroll_message").show();
+  }else{
+    $("#nav_bar").hide();
+    $(".name_txt p").html("知識人と歩く<br>筑波大学");
+    $(".scroll_message").hide();
+  }
+});
