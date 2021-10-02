@@ -82,6 +82,7 @@ var slideCount = 0;
 var picDiv = $('<div id="pic-div"></div>').appendTo("body");
 var mainPic = $('<img id="main-pic" onclick="pictureClicked();">').appendTo(picDiv);
 var picRef;
+var picSizeRatio;
 
 //data: [pos1,pos2,[title,comment,speciality,name]]
 
@@ -135,7 +136,7 @@ function slideClicked(){
   var image = new Image();
   image.src = slideImg[slideCount];
   var picAspRatio = image.width/image.height;
-  var picSizeRatio = $(window).height() * 0.8 / image.height;
+  picSizeRatio = $("#main-pic").css("height").replace("px","") / image.height;
 
   mainPic.attr("src", slideImg[slideCount]);
 
@@ -147,6 +148,8 @@ function slideClicked(){
 
 
 
+
+
   loadTrigger(picSizeRatio);
   showTrigger(picSizeRatio);
 
@@ -155,6 +158,14 @@ function slideClicked(){
 
   $("body").addClass("no-vscroll");
 }
+
+$(window).resize(function(){
+  var image = new Image();
+  image.src = slideImg[slideCount];
+  picSizeRatio = $("#main-pic").css("height").replace("px","") / image.height;
+  reposTrigger(picSizeRatio);
+  makePicDiv(image.width/image.height);
+});
 
 function bgClicked(){
 
@@ -203,6 +214,28 @@ function loadTrigger(picSizeRatio){
   }
 }
 
+function reposTrigger(picSizeRatio){
+  for(let i=0; i<picTriggers.length; i++){
+
+    var x1 = dbPicRefs["p" + slideCount]["trig"+i].trigpos.split(',')[0];
+    var y1 = dbPicRefs["p" + slideCount]["trig"+i].trigpos.split(',')[1];
+    var x2 = dbPicRefs["p" + slideCount]["trig"+i].trigpos.split(',')[2];
+    var y2 = dbPicRefs["p" + slideCount]["trig"+i].trigpos.split(',')[3];
+
+    var cssTop = y1 * picSizeRatio;
+    var cssLeft = x1 * picSizeRatio;
+    var cssWidth = (x2-x1) * picSizeRatio;
+    var cssHeight = (y2-y1) * picSizeRatio;
+
+    picTriggers[i].css('top',cssTop);
+    picTriggers[i].css('left',cssLeft);
+    picTriggers[i].css('width',cssWidth);
+    picTriggers[i].css('height',cssHeight);
+
+    // console.log(String(slideCount).padStart(2,'0') + String(i));
+  }
+}
+
 function showTrigger(picSizeRatio){
   for(let i=0; i<picTriggers.length; i++){
     picTriggers[i].fadeIn();
@@ -221,7 +254,7 @@ function removeTrigger(){
 
 function makePicDiv(picAspRatio){
 
-  var height = $(window).height() * 0.8;
+  var height = $("#main-pic").css("height").replace("px","");
   var width = picAspRatio * height;
 
   picDiv.css("width", width);
