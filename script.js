@@ -780,33 +780,55 @@ function addFlickity(){
   var leftButton = $('<div class="sshow-button"></div>').appendTo(slideDiv);
 
 
-  rightButton.css("left", '89vw');
-  leftButton.css("left", '-59vw');
+  rightButton.css("left", '79vw');
+  leftButton.css("left", '-49vw');
 
 
   $(window).resize(function(){
     windowWidth = $(window).width();
-    rightButton.css("left", '89vw');
-    leftButton.css("left", '-59vw');
+    rightButton.css("left", '79vw');
+    leftButton.css("left", '-49vw');
 
   });
 
-  rightButton.on({
-    // 'mouseenter': function(){
-    //   $($(".sshow")[flickityData.selectedIndex + 1]).css("opacity","0.8");
-    // },
-    // 'mouseleave': function(){
-    //   $($(".sshow")[flickityData.selectedIndex + 1]).css("opacity","1.0");
-    // },
+  $(".pic-div").on({
+    'mouseenter': function(){
+      $($(".sshow")[flickityData.selectedIndex]).css("opacity","0.8");
+    },
+    'mouseleave': function(){
+      $($(".sshow")[flickityData.selectedIndex]).css("opacity","1.0");
+    },
     'mousedown': function(){
-      // $($(".sshow")[flickityData.selectedIndex + 1]).css("opacity","1.0");
+      $($(".sshow")[flickityData.selectedIndex]).css("opacity","1.0");
+    }
+  });
+
+  rightButton.on({
+    'mouseenter': function(){
+      $($(".sshow")[slideCountNormalize(flickityData.selectedIndex + 1)]).css("opacity","0.8");
+    },
+    'mouseleave': function(){
+      $($(".sshow")[slideCountNormalize(flickityData.selectedIndex + 1)]).css("opacity","1.0");
+    },
+    'mousedown': function(){
+      $($(".sshow")[slideCountNormalize(flickityData.selectedIndex + 1)]).css("opacity","1.0");
       $('.sshow_div').flickity( 'next');
     }
   });
 
-  leftButton.on('mousedown', function(){
-    $('.sshow_div').flickity( 'previous');
+  leftButton.on({
+    'mouseenter': function(){
+      $($(".sshow")[slideCountNormalize(flickityData.selectedIndex - 1)]).css("opacity","0.8");
+    },
+    'mouseleave': function(){
+      $($(".sshow")[slideCountNormalize(flickityData.selectedIndex - 1)]).css("opacity","1.0");
+    },
+    'mousedown': function(){
+      $($(".sshow")[slideCountNormalize(flickityData.selectedIndex - 1)]).css("opacity","1.0");
+      $('.sshow_div').flickity( 'previous');
+    }
   });
+
 
   $('.sshow_div').on( 'staticClick.flickity', function( event, pointer, cellElement, cellIndex ) {
     slideCount = flickityData.selectedIndex;
