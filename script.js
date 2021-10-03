@@ -148,8 +148,18 @@ function slideClicked(){
   picDiv.fadeIn();
   mainPic.fadeIn("slow");
 
+  var closeButton = $('<i class="fas fa-times close-button"></i>').appendTo($("#pic-div"));
+  closeButton.on('mousedown', function(){
+    bgClicked();
+  });
 
+  var miscButton = $('<i class="fas fa-bars misc-button"></i>').appendTo($("#pic-div"));
+  miscButton.on('mousedown', function(){
+    miscButtonClicked();
+  });
 
+  var credit = "撮影: " + dbPicRefs["p" + slideCount]['misc']['credit'];
+  var creditP = $('<p class="pic-credit"></p>').html(credit).appendTo($("#pic-div"));
 
 
   loadTrigger(picSizeRatio);
@@ -173,12 +183,15 @@ function bgClicked(){
 
   $("#comment-box").fadeOut().queue(function(){
     this.remove();
+
   });
 
   modalOverlay.fadeOut("slow");
-
+  $(".pic-credit").fadeOut().queue(function(){
+    this.remove();
+  });
   mainPic.fadeOut();
-  picDiv.fadeOut();
+  picDiv.fadeOut().queue();
 
   $("body").removeClass("no-vscroll");
   removeTrigger();
@@ -346,6 +359,28 @@ function triggerClicked(e){
   var newComButton = $('<button class="new-com-button">新たな視点を投稿する</button>').appendTo(div);
   newComButton.on('mousedown', newComButtonClicked);
 
+}
+
+function miscButtonClicked(){
+
+    $(".comment-box").remove();
+
+
+    var obj = $(event.target);
+    var div = $('<div class="comment-box"></div>').appendTo("#pic-div");
+    //div.on('mousedown.commentBox', mainCommentBoxClicked);
+    var credit = "撮影: " +  dbPicRefs["p" + slideCount]['misc']['credit'];
+    var date = "撮影日: " + dbPicRefs["p" + slideCount]['misc']['date'];
+    var place =  "場所: " + dbPicRefs["p" + slideCount]['misc']['place'];
+    div.css("bottom", "10px");
+    div.css("right", "120px");
+    div.css("height", "auto");
+    div.css("width", "auto")
+
+    var creditP = $('<p class="white misc-text"></p>').html(credit).appendTo(div);
+    var dateP = $('<p class="white misc-text"></p>').html(date).appendTo(div);
+    var placeP = $('<p class="white misc-text"></p>').html(place).appendTo(div);
+    div.fadeIn();
 }
 
 function writeUserData(userId, name, email, imageUrl) {
@@ -812,6 +847,7 @@ function addFlickity(){
     },
     'mousedown': function(){
       $($(".sshow")[slideCountNormalize(flickityData.selectedIndex + 1)]).css("opacity","1.0");
+      $($(".sshow")[slideCountNormalize(flickityData.selectedIndex + 2)]).css("opacity","0.8");
       $('.sshow_div').flickity( 'next');
     }
   });
@@ -825,6 +861,7 @@ function addFlickity(){
     },
     'mousedown': function(){
       $($(".sshow")[slideCountNormalize(flickityData.selectedIndex - 1)]).css("opacity","1.0");
+      $($(".sshow")[slideCountNormalize(flickityData.selectedIndex - 2)]).css("opacity","0.8");
       $('.sshow_div').flickity( 'previous');
     }
   });

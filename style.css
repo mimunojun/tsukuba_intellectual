@@ -468,6 +468,61 @@ div{
   background-color: rgba(255,255,255,0.5);
 }
 
+.close-button{
+  position: absolute;
+  right: -20px;
+  top: -20px;
+  width: 80px;
+  height: 80px;
+  border: white 2px solid;
+  z-index: 4;
+  font-size: 50px;
+  color: white;
+  background-color: black;
+  border-radius: 40px;
+  cursor: pointer;
+}
+
+.close-button:before {
+    top: 13px;
+    left: 21px;
+    position: absolute;
+}
+
+.misc-button{
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  width: 80px;
+  height: 80px;
+  border: white 2px solid;
+  z-index: 4;
+  font-size: 50px;
+  color: white;
+  background-color: black;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.misc-button:before {
+    top: 12px;
+    left: 16px;
+    position: absolute;
+}
+
+.misc-text{
+  margin: 5px;
+}
+
+
+.pic-credit{
+  color: white;
+  font-size: 18px;
+  bottom: -20px;
+  left: 0px;
+  position: absolute;
+}
+
 .no-vscroll{
   overflow-y: hidden;
 }
