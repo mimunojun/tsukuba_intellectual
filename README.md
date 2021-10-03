@@ -3,6 +3,9 @@
 wip is here https://nuink.github.io/TisikijinWEB/
 
 ## changelog
+### 10/03_2 close-button, misc-button, credit
+・写真の閉じるボタン、詳細ボタンを追加<br>
+・撮影者(クレジット)を追加<br>
 ### 10/03 resize slidshow, hover fx
 ・スライドショーを小さくした<br>
 ・左右の写真にホバー効果つけた
