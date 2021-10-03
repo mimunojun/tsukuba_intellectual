@@ -3,6 +3,9 @@
 wip is here https://nuink.github.io/TisikijinWEB/
 
 ## changelog
+### 10/03 resize slidshow, hover fx
+・スライドショーを小さくした<br>
+・左右の写真にホバー効果つけた
 ### 10/02_3 logo & responsive-preparing
 ・ヘッダーにあったtigテキストをtigロゴに置換した<br>
 ・レスポンシブの準備をした
