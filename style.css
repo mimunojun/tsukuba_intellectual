@@ -344,7 +344,7 @@ div{
 
 #shoutout{
   padding: 120px;
-  background-color: white;
+  background-color: var(--t-white);
 }
 
 #shoutout h2{
@@ -400,14 +400,19 @@ div{
 
 #footer{
   padding: 0 120px;
-  background-color: var(--t-white);
+  background-color: white;
   font-size: 15px;
 }
 
-#nav_footer{
+
+#nav_footer ul li{
+  display: inline-block;
+
+  margin-right: 70px;
   font-size: 20px;
-  text-align: left;
-  line-height: 3em;
+  color: var(--t-black);
+  font-weight: 500;
+  line-height: 120px;
   transition: .3s;
 }
 
@@ -830,6 +835,62 @@ b{
   width: attr(data-width);
 
 }
+
+.nuink-logo{
+  position: relative;
+  top: -30px;
+}
+
+.sns-logo-div{
+  position: absolute;
+  right: 20px;
+  top: -20px;
+  margin-right: 40px;
+}
+
+.sns-logo{
+  width: 30px;
+  margin-right: 20px;
+  position: relative;
+}
+
+.nuink-logo{
+  width: 241px;
+}
+
+.sp-one{
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 26px;
+
+}
+
+.copyright{
+
+}
+
+.nuink-selfpromo{
+  text-align: left;
+  display: flex;
+
+}
+
+#footer h2{
+  font-size: 20px;
+}
+
+#footer h3{
+  font-size: 17px;
+  font-weight: 400;
+  margin-left: 50px;
+}
+
+#footer h4{
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
 
 
 
