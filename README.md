@@ -3,8 +3,12 @@
 wip is here https://nuink.github.io/TisikijinWEB/
 
 ## changelog
+### 10/04_2 twi-share
+・miscボタン内にTwitter共有ボタンを追加した<br>
+・見ている写真情報をもつメディアクエリを追加した　ロード時にその写真がスライドショーの初期写真になる<br>
+・何個中何個見つけているかをツイート本文に記載する<br>
 ### 10/04 counter
-・カウンターの追加<br>
+・カウンターを追加した<br>
 ### 10/03_3 footer
 ・フッターをTIGと同じ内容にした<br>
 ### 10/03_2 close-button, misc-button, credit
