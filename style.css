@@ -601,6 +601,20 @@ div{
   text-align: left;
 }
 
+.normal-box{
+  z-index:4;
+  border: var(--t-white) solid 2px;
+  position:absolute;
+  background-color: black;
+  color: white;
+}
+
+.congrats{
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+
 .com-from-user{
   border-left: var(--accent2) solid 5px;
 }
@@ -954,4 +968,18 @@ b{
     left: -10px;
   }
 
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 0px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0,0,0,1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: gray;
+  border-radius: 20px;
 }

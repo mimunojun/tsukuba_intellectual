@@ -303,6 +303,7 @@ function pictureClicked(){
   $(".comment-box").fadeOut().queue(function(){
     this.remove();
   });
+
 }
 
 function triggerClicked(e){
