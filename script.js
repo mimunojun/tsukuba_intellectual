@@ -80,7 +80,7 @@ var modalOverlay = $('<div id="modal-overlay" href="javascript:" onclick="bgClic
 var picTriggers = [];
 var dbPicRefs = [];
 var slidePoints = [];
-var slideCount = 0;
+var slideCount = getParam('sc');
 var picDiv = $('<div id="pic-div"></div>').appendTo("body");
 var mainPic = $('<img id="main-pic" onclick="pictureClicked();">').appendTo(picDiv);
 var picRef;
@@ -396,17 +396,22 @@ function miscButtonClicked(){
     var obj = $(event.target);
     var div = $('<div class="comment-box"></div>').appendTo("#pic-div");
     //div.on('mousedown.commentBox', mainCommentBoxClicked);
-    var credit = "撮影: " +  dbPicRefs["p" + slideCount]['misc']['credit'];
-    var date = "撮影日: " + dbPicRefs["p" + slideCount]['misc']['date'];
-    var place =  "場所: " + dbPicRefs["p" + slideCount]['misc']['place'];
+    var credit = dbPicRefs["p" + slideCount]['misc']['credit'];
+    var date = dbPicRefs["p" + slideCount]['misc']['date'];
+    var place =  dbPicRefs["p" + slideCount]['misc']['place'];
+    var triggerNum = Object.keys(dbPicRefs['p'+slideCount]).length - 1;
     div.css("bottom", "10px");
     div.css("right", "120px");
     div.css("height", "auto");
     div.css("width", "auto");
 
-    var creditP = $('<p class="white misc-text"></p>').html(credit).appendTo(div);
-    var dateP = $('<p class="white misc-text"></p>').html(date).appendTo(div);
-    var placeP = $('<p class="white misc-text"></p>').html(place).appendTo(div);
+
+    var creditP = $('<p class="white misc-text"></p>').html("撮影: " +  credit).appendTo(div);
+    var dateP = $('<p class="white misc-text"></p>').html("撮影日: " + date).appendTo(div);
+    var placeP = $('<p class="white misc-text"></p>').html("場所: " + place).appendTo(div);
+    var shareButton = $('<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>').appendTo(div);
+    shareButton.attr('data-url', 'https://nuink.github.io/TisikijinWEB/'+'?sc='+slideCount);
+    shareButton.attr('data-text', '筑波大学の「'+place+'」の景色を見ています。専門家の視点を'+triggerNum+'個中'+counter+'個発見しました！')
     div.fadeIn();
 }
 
@@ -699,6 +704,7 @@ $(window).on('load', function() {
     contain: false,
     wrapAround: true,
     prevNextButtons: false,
+    initialIndex: getParam('sc'),
   }).data('flickity');
 
   addFlickity();
@@ -950,3 +956,13 @@ $(window).on('load resize', function(){
     $(".scroll_message").hide();
   }
 });
+
+function getParam(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
