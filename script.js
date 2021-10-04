@@ -85,6 +85,8 @@ var picDiv = $('<div id="pic-div"></div>').appendTo("body");
 var mainPic = $('<img id="main-pic" onclick="pictureClicked();">').appendTo(picDiv);
 var picRef;
 var picSizeRatio;
+var counter = 0;
+var counterP;
 
 //data: [pos1,pos2,[title,comment,speciality,name]]
 
@@ -161,6 +163,18 @@ function slideClicked(){
   var credit = "撮影: " + dbPicRefs["p" + slideCount]['misc']['credit'];
   var creditP = $('<p class="pic-credit"></p>').html(credit).appendTo($("#pic-div"));
 
+  var counterDiv = $('<div class="counter-box"></div>').appendTo($("#pic-div"));
+  var trigerNum = Object.keys(dbPicRefs['p'+slideCount]).length - 1;
+  counterP = $('<p class="white"></p>').html(counter+'/'+trigerNum).appendTo(counterDiv);
+
+  counterDiv.css("bottom", "10px");
+  counterDiv.css("left", "10px");
+  counterDiv.css("height", "auto");
+  counterDiv.css("width", "auto");
+  counterDiv.css("padding", "10px");
+  counterDiv.fadeIn();
+
+
 
   loadTrigger(picSizeRatio);
   showTrigger(picSizeRatio);
@@ -169,6 +183,12 @@ function slideClicked(){
 
 
   $("body").addClass("no-vscroll");
+}
+
+function counterUpdate(){
+  var trigerNum = Object.keys(dbPicRefs['p'+slideCount]).length - 1;
+  counter += 1;
+  counterP.html(counter+'/'+trigerNum);
 }
 
 $(window).resize(function(){
@@ -199,6 +219,8 @@ function bgClicked(){
     this.remove();
   });
 
+  counter = 0;
+
 }
 
 function loadTrigger(picSizeRatio){
@@ -215,7 +237,7 @@ function loadTrigger(picSizeRatio){
     var cssWidth = (x2-x1) * picSizeRatio;
     var cssHeight = (y2-y1) * picSizeRatio;
 
-    var newTrigger = $('<div href="javascript:" onclick="triggerClicked(event);" class="pic-trigger"></div>');
+    var newTrigger = $('<div href="javascript:" onclick="triggerClicked(event);" class="pic-trigger" clicked="false"></div>');
     newTrigger.css('top',cssTop);
     newTrigger.css('left',cssLeft);
     newTrigger.css('width',cssWidth);
@@ -354,6 +376,11 @@ function triggerClicked(e){
     var likeCount =  $('<span class ="comment-like-count"></span>').html("  "+like).appendTo(newdiv);
   }
 
+  if(obj.attr('clicked')=='false'){
+    counterUpdate();
+    obj.attr('clicked', 'true');
+  }
+
 
 
   var newComButton = $('<button class="new-com-button">新たな視点を投稿する</button>').appendTo(div);
@@ -375,7 +402,7 @@ function miscButtonClicked(){
     div.css("bottom", "10px");
     div.css("right", "120px");
     div.css("height", "auto");
-    div.css("width", "auto")
+    div.css("width", "auto");
 
     var creditP = $('<p class="white misc-text"></p>').html(credit).appendTo(div);
     var dateP = $('<p class="white misc-text"></p>').html(date).appendTo(div);

@@ -404,6 +404,15 @@ div{
   font-size: 15px;
 }
 
+#nav_footer {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+#nav_footer ul {
+  margin: 0 auto;
+  width: 1000px;
+}
 
 #nav_footer ul li{
   display: inline-block;
@@ -579,6 +588,17 @@ div{
   margin-left: 30px;
   padding-left: 15px;
   border-left: var(--accent) solid 5px;
+}
+
+.counter-box{
+  z-index:4;
+  border: var(--t-white) solid 2px;
+  position:absolute;
+  bottom:10px;
+  left:10px;
+  background-color: black;
+  padding: 10px;
+  text-align: left;
 }
 
 .com-from-user{
@@ -844,13 +864,12 @@ b{
 .sns-logo-div{
   position: absolute;
   right: 20px;
-  top: -20px;
-  margin-right: 40px;
+  top: -16px;
 }
 
 .sns-logo{
   width: 30px;
-  margin-right: 20px;
+  margin-right: 14px;
   position: relative;
 }
 
@@ -872,6 +891,9 @@ b{
 .nuink-selfpromo{
   text-align: left;
   display: flex;
+
+  width: 1000px;
+  margin: 0 auto;
 
 }
 
