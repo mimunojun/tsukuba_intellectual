@@ -3,6 +3,8 @@
 wip is here https://nuink.github.io/TisikijinWEB/
 
 ## changelog
+### 10/04_3 scrollbar-cusomize
+・スクロールバーをカスタマイズした　目立たないように<br>
 ### 10/04_2 twi-share
 ・miscボタン内にTwitter共有ボタンを追加した<br>
 ・見ている写真情報をもつメディアクエリを追加した　ロード時にその写真がスライドショーの初期写真になる<br>
