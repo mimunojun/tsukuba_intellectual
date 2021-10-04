@@ -3,6 +3,8 @@
 wip is here https://nuink.github.io/TisikijinWEB/
 
 ## changelog
+### 10/04 counter
+・カウンターの追加<br>
 ### 10/03_3 footer
 ・フッターをTIGと同じ内容にした<br>
 ### 10/03_2 close-button, misc-button, credit
