@@ -229,6 +229,10 @@ div{
   border-bottom: solid 12px var(--accent);
 }
 
+#concept span{
+  font-size: 36px;
+}
+
 #content{
   background-color: var(--t-black);
   padding: 120px 0;
@@ -968,11 +972,108 @@ b{
     left: -10px;
   }
 
+  .container{
+    padding: 12px;
+    margin: 20px 0px;
+  }
+
+  .howto-container.container{
+    margin: 0px;
+  }
+
+  #concept h2{
+    font-size: 7vw;
+    border-bottom: solid 6px var(--accent);
+    width: 13em;
+  }
+
+  #concept span{
+    font-size: 6vw;
+  }
+
+  #concept h2.howto-title{
+    font-size: 6vw;
+    border-bottom: solid 4px var(--accent);
+  }
+
+  #content h2{
+    font-size: 7vw;
+    border-bottom: solid 6px var(--accent);
+  }
+
+  #shoutout{
+    padding: 120px 5px;
+  }
+
+  #shoutout h2{
+    font-size: 7vw;
+    border-bottom: solid 6px var(--accent);
+  }
+
+  #shoutout .member{
+    width: 100%;
+    height: auto;
+    margin: 35px 0px;
+  }
+
+  #footer{
+    padding: 0px 30px;
+  }
+
+  #nav_footer{
+    width: 100%;
+  }
+
+  #nav_footer ul{
+    width: 100%;
+  }
+
+  #nav_footer ul li {
+    margin-right: 0px;
+    width: 100%;
+    line-height: 50px;
+  }
+
+  .nuink-selfpromo{
+    display: block;
+    width: 100%;
+  }
+
+  .nuink-logo{
+    width: 100%;
+    top: 0px;
+  }
+
+  .sp-one{
+    display: block;
+    text-align: left;
+
+  }
+
+  #footer h3{
+    margin-left: 0px;
+    margin-top: 20px;
+  }
+
+  #footer h4{
+    font-size: 14px;
+  }
+
+  .sns-logo-div {
+    position: static;
+    margin-top: 20px;
+  }
+
+  .sns-logo {
+    margin-right: 24px;
+  }
+
 }
 
 ::-webkit-scrollbar {
   width: 10px;
   height: 0px;
+  background: rgba(0,0,0,0);
 }
 
 ::-webkit-scrollbar-track {
@@ -982,4 +1083,5 @@ b{
 ::-webkit-scrollbar-thumb {
   background: gray;
   border-radius: 20px;
+  width: 8px;
 }
