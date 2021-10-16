@@ -52,6 +52,8 @@ const loadIntervalId = setInterval(() =>{
         $("#nav_bar").fadeIn();
         var hSize = $(window).height();
         $('.cover').height(hSize); // アドレスバーを除いたサイズを付与
+      }else{
+        $('#title').height($(window).height()));
       }
       $("body").removeClass("no-vscroll");
       clearInterval(loadIntervalId);　//intervalIdをclearIntervalで指定している
