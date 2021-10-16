@@ -337,6 +337,17 @@ div{
   background: white;
 }
 
+.bottom-div{
+  background: rgb(0,0,0);
+  background: linear-gradient(0deg, rgba(0,0,0,0.9318102240896359) 0%, rgba(0,0,0,0.5984768907563025) 79%, rgba(0,212,255,0) 100%);
+  z-index: 3;
+  height: 10%;
+  position: absolute;
+  bottom: -1px;
+  width: 100.1%;
+  left: -1px;
+}
+
 #content #points{
   display: inline-block;
   position: relative;
@@ -364,8 +375,7 @@ div{
   display: inline-block;
   text-align: left;
   width: 45%;
-  height: 230px;
-  margin: 1% 2%;
+  margin: 5px 10px 30px 10px;
   overflow: hidden;
 }
 
@@ -374,15 +384,16 @@ div{
   font-weight: 700;
   font-size: 30px;
   margin-bottom:20px;
-  margin: 0 0 0 10px;
+  margin: 0 0 0 30px;
   color:var(--t-black);
+  width: 100%;
 }
 
 #shoutout h4{
   display: inline-block;
   font-weight: 700;
   font-size: 22px;
-  margin-left:5px;
+  margin-left:30px;
   color:var(--t-black);
 }
 
@@ -391,7 +402,7 @@ div{
 }
 
 #shoutout .member p{
-  margin: 30px;
+  margin: 15px 30px;
 }
 
 #shoutout a{
@@ -409,19 +420,19 @@ div{
 }
 
 #nav_footer {
-  width: 1200px;
+  width: 60vw;
   margin: 0 auto;
 }
 
 #nav_footer ul {
   margin: 0 auto;
-  width: 1000px;
+  width: 60vw;
 }
 
 #nav_footer ul li{
   display: inline-block;
 
-  margin-right: 70px;
+  margin-right: 5vw;
   font-size: 20px;
   color: var(--t-black);
   font-weight: 500;
@@ -459,7 +470,7 @@ div{
   transform: translateX(-50%) translateY(-50%);
 }
 
-#pic-div{
+#real-pic-div{
   z-index: 3;
   display: none;
   position: fixed;
@@ -488,16 +499,13 @@ div{
 
 .close-button{
   position: absolute;
-  right: -20px;
-  top: -20px;
-  width: 80px;
-  height: 80px;
-  border: white 2px solid;
+  right: 5px;
+  top: 5px;
+  width: 2vw;
+  height: auto;
   z-index: 4;
   font-size: 50px;
   color: white;
-  background-color: black;
-  border-radius: 40px;
   cursor: pointer;
 }
 
@@ -509,15 +517,15 @@ div{
 
 .misc-button{
   position: absolute;
-  bottom: 5px;
-  right: 5px;
-  width: 80px;
-  height: 80px;
-  border: white 2px solid;
+  bottom: 10px;
+  right: 15px;
+  width: 3vw;
+  height: 3vw;
+  /* border: white 2px solid; */
   z-index: 4;
   font-size: 50px;
   color: white;
-  background-color: black;
+  /* background-color: black; */
   border-radius: 10px;
   cursor: pointer;
 }
@@ -525,6 +533,7 @@ div{
 .misc-button:before {
     top: 12px;
     left: 16px;
+    width: 4vw;
     position: absolute;
 }
 
@@ -535,9 +544,10 @@ div{
 
 .pic-credit{
   color: white;
-  font-size: 18px;
-  bottom: -20px;
-  left: 0px;
+  bottom: 10px;
+  margin: 10px;
+  left: 10px;
+  z-index: 4;
   position: absolute;
 }
 
@@ -596,14 +606,17 @@ div{
 
 .counter-box{
   z-index:4;
-  border: var(--t-white) solid 2px;
+  /* border: var(--t-white) solid 2px; */
   position:absolute;
   bottom:10px;
-  left:10px;
-  background-color: black;
+  left: 50%;
+  transform: translate(-50%);
+  /* background-color: black; */
   padding: 10px;
   text-align: left;
+  z-index: 4;
 }
+
 
 .normal-box{
   z-index:4;
@@ -814,6 +827,18 @@ b{
   width: 10em;
 }
 
+.comment-box.misc-box{
+  bottom: 10px;
+  right: 120px;
+  height: auto;
+  width: auto;
+  display: block;
+}
+
+.white.misc-text{
+  margin-top: 0px;
+}
+
 #load-div{
   z-index: 0;
   background-color: black;
@@ -964,12 +989,16 @@ b{
     left: 10px;
   }
 
+  #title{
+    min-height: 0px;
+  }
+
   .title_txt{
-    font-size: 75px;
     writing-mode: vertical-rl;
     text-orientation: sideways;
     bottom: -30px;
     left: -10px;
+    font-size: 9vh;
   }
 
   .container{
@@ -1059,6 +1088,10 @@ b{
     font-size: 14px;
   }
 
+  #footer .container{
+    margin: 0px;
+  }
+
   .sns-logo-div {
     position: static;
     margin-top: 20px;
@@ -1080,6 +1113,96 @@ b{
   #main-pic{
     width: 95vw;
     height: auto;
+  }
+
+  .counter-box{
+    font-size: 3vw;
+    margin: 0px;
+    bottom: -2em;
+    padding: 0px;
+  }
+
+  .pic-credit{
+    font-size: 3vw;
+    margin: 0px;
+    bottom: -2em;
+  }
+
+  .misc-button{
+    bottom: -23px;
+  }
+
+  .bottom-div{
+    display: none;
+  }
+
+  .comment-box{
+    width: 90vw;
+    font-size: 4vw;
+    padding: 4px;
+    height: 75vh;
+    padding-left: 14px;
+    padding-top: 20px;
+  }
+
+  .comment-trigname{
+    font-size: 4vw;
+  }
+
+  .comment-speciality{
+    font-size: 3vw;
+    margin-top: 2px;
+    margin-left: 14px;
+  }
+
+  .comment-name{
+    font-size: 3vw;
+  }
+
+  .comment-title{
+    font-size: 4vw;
+    margin-left: 14px;
+  }
+
+  .comment-text{
+    font-size: 3vw;
+    margin: 12px;
+  }
+
+  .comment-like-count{
+    font-size: 4vw;
+  }
+
+  .phone-close{
+    position: absolute;
+    right: 0px;
+    top: 10px;
+    width: 5vw;
+  }
+
+  .comment-box.misc-box{
+    padding: 10px 10px;
+    bottom: -60%;
+    right: 25%;
+    transform: translate(50%);
+  }
+
+  .misc-text{
+    padding-top: 0px;
+  }
+
+  .new-com-div{
+    height: 80vh;
+  }
+  .new-com-title{
+    font-size: 5vw;
+  }
+  .new-com-caution{
+    font-size: 4vw;
+  }
+
+  .close-button{
+    width: 6vw;
   }
 
 }

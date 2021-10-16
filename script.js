@@ -1,10 +1,10 @@
 
-
-function imageJustSize() {
-  var title = document.getElementById('title');
-  var winH = window.innerHeight;
-  title.style.height = winH + 'px';
-}
+//
+// function imageJustSize() {
+//   var title = document.getElementById('title');
+//   var winH = window.innerHeight;
+//   title.style.height = winH + 'px';
+// }
 
 
 var images = new Array();
@@ -22,10 +22,10 @@ window.onload = function(){
 
 
 
-imageJustSize();
+// imageJustSize();
 
 
-window.addEventListener('resize', imageJustSize);
+// window.addEventListener('resize', imageJustSize);
 
 //読み込み完了時
 window.onload = function () {
@@ -50,6 +50,8 @@ const loadIntervalId = setInterval(() =>{
       $("#load-div").fadeOut("slow");
       if($(window).width() >= 600){
         $("#nav_bar").fadeIn();
+        var hSize = $(window).height();
+        $('.cover').height(hSize); // アドレスバーを除いたサイズを付与
       }
       $("body").removeClass("no-vscroll");
       clearInterval(loadIntervalId);　//intervalIdをclearIntervalで指定している
@@ -81,8 +83,8 @@ var picTriggers = [];
 var dbPicRefs = [];
 var slidePoints = [];
 var slideCount = getParam('sc');
-var picDiv = $('<div id="pic-div"></div>').appendTo("body");
-var mainPic = $('<img id="main-pic" onclick="pictureClicked();">').appendTo(picDiv);
+var mainPic;
+var picDiv;
 var picRef;
 var picSizeRatio;
 var counter = 0;
@@ -137,58 +139,69 @@ function slideRight(){
 }
 
 function slideClicked(){
+  picDiv = $('<div id="real-pic-div"></div').appendTo("body");
+  mainPic = $('<img id="main-pic" onclick="pictureClicked();">').appendTo(picDiv);
   var image = new Image();
   image.src = slideImg[slideCount];
   var picAspRatio = image.width/image.height;
-  picSizeRatio = $("#main-pic").css("height").replace("px","") / image.height;
+  mainPic.fadeIn("fast").queue(function(){
+    if($(window).width() < 600){
+      picSizeRatio = $("#main-pic").css("height").replace("px","") / image.height;
+      // console.log(picSizeRatio);
+      makePicDiv(picAspRatio);
+      loadTrigger(picSizeRatio);
+      showTrigger(picSizeRatio);
+    }
 
-  mainPic.attr("src", slideImg[slideCount]);
-
-  modalOverlay.fadeIn("slow");
-
-  makePicDiv(picAspRatio);
-  picDiv.fadeIn();
-  mainPic.fadeIn("slow");
-
-  var closeButton = $('<i class="fas fa-times close-button"></i>').appendTo($("#pic-div"));
-  closeButton.on('mousedown', function(){
-    bgClicked();
   });
-
-  var miscButton = $('<i class="fas fa-bars misc-button"></i>').appendTo($("#pic-div"));
-  miscButton.on('mousedown', function(){
-    miscButtonClicked();
-  });
-
-  var credit = "撮影: " + dbPicRefs["p" + slideCount]['misc']['credit'];
-  var creditP = $('<p class="pic-credit"></p>').html(credit).appendTo($("#pic-div"));
-
-  var counterDiv = $('<div class="counter-box"></div>').appendTo($("#pic-div"));
-  var trigerNum = Object.keys(dbPicRefs['p'+slideCount]).length - 1;
-  counterP = $('<p class="white"></p>').html(counter+'/'+trigerNum).appendTo(counterDiv);
-
-  counterDiv.css("bottom", "10px");
-  counterDiv.css("left", "10px");
-  counterDiv.css("height", "auto");
-  counterDiv.css("width", "auto");
-  counterDiv.css("padding", "10px");
-  counterDiv.fadeIn();
+  if($(window).width() >= 600){
+    picSizeRatio = $("#main-pic").css("height").replace("px","") / image.height;
+  }
 
 
+  image.onload = function(){
+    setTimeout(() =>{
+      picSizeRatio = $("#main-pic").css("height").replace("px","") / image.height;
 
-  loadTrigger(picSizeRatio);
-  showTrigger(picSizeRatio);
+      mainPic.attr("src", slideImg[slideCount]);
 
+      modalOverlay.fadeIn("slow");
+      picDiv.fadeIn();
 
+      var closeButton = $('<img class="close-button" src=img/times.png>').appendTo($("#real-pic-div"));
+      closeButton.on('mousedown', function(){
+        bgClicked();
+      });
 
+      var miscButton = $('<img class="misc-button" src=img/misc-icon.png>').appendTo($("#real-pic-div"));
+      miscButton.on('mousedown', function(){
+        miscButtonClicked();
+      });
 
-  $("body").addClass("no-vscroll");
+      var credit = "撮影: " + dbPicRefs["p" + slideCount]['misc']['credit'];
+      var creditP = $('<p class="pic-credit"></p>').html(credit).appendTo($("#real-pic-div"));
+
+      var counterDiv = $('<div class="counter-box"></div>').appendTo($("#real-pic-div"));
+      var trigerNum = Object.keys(dbPicRefs['p'+slideCount]).length - 1;
+      counterP = $('<p class="white"></p>').html('見つけた視点: ' + counter+'/'+trigerNum).appendTo(counterDiv);
+      counterDiv.fadeIn();
+
+      var bottomDiv = $('<div class="bottom-div"></div>').appendTo($("#real-pic-div"));
+
+      makePicDiv(picAspRatio);
+      loadTrigger(picSizeRatio);
+      showTrigger(picSizeRatio);
+
+      $("body").addClass("no-vscroll");
+    }, 0);
+  }
+
 }
 
 function counterUpdate(){
   var trigerNum = Object.keys(dbPicRefs['p'+slideCount]).length - 1;
   counter += 1;
-  counterP.html(counter+'/'+trigerNum);
+  counterP.html('見つけた視点: ' + counter+'/'+trigerNum);
 }
 
 $(window).resize(function(){
@@ -221,6 +234,10 @@ function bgClicked(){
 
   counter = 0;
 
+  $("#real-pic-div").fadeOut().queue(function(){
+    this.remove();
+  });
+
 }
 
 function loadTrigger(picSizeRatio){
@@ -243,7 +260,7 @@ function loadTrigger(picSizeRatio){
     newTrigger.css('width',cssWidth);
     newTrigger.css('height',cssHeight);
 
-    $("#pic-div").append(newTrigger); //htmlへの組み込み
+    $("#real-pic-div").append(newTrigger); //htmlへの組み込み
     picTriggers.push(newTrigger);     //jsで扱う配列への組み込み
 
     newTrigger.attr('js-id',String(i));
@@ -294,8 +311,8 @@ function makePicDiv(picAspRatio){
   var height = $("#main-pic").css("height").replace("px","");
   var width = picAspRatio * height;
 
-  picDiv.css("width", width);
-  picDiv.css("height", height);
+  picDiv.css("width", width+'px');
+  picDiv.css("height", height+'px');
 
 }
 
@@ -322,17 +339,31 @@ function triggerClicked(e){
   $("body").append(div);
   div.fadeIn();
   mousePos = [e.clientX, e.clientY];
-  if(mousePos[1] > window.innerHeight / 2){ //y
-    div.css('top', mousePos[1] - 300);
+
+  if($(window).width() >= 600){
+    if(mousePos[1] > window.innerHeight / 2){ //y
+      div.css('top', mousePos[1] - 300);
+    }else{
+      div.css('top', mousePos[1] - 120);
+    }
+
+    if(mousePos[0] > window.innerWidth / 2){  //x
+      div.css('left', mousePos[0] - (100 + 420));
+    }else{
+      div.css('left', mousePos[0] + 100);
+    }
   }else{
-    div.css('top', mousePos[1] - 120);
+    div.css('top', '50%');
+    div.css('left', '50%');
+    div.css('transform','translate(-50%, -50%)');
+
+    var closeButton = $('<img class="phone-close" src="img/times-white.png">').appendTo(div);
+    closeButton.on('mousedown', function(){
+      pictureClicked();
+    });
+
   }
 
-  if(mousePos[0] > window.innerWidth / 2){  //x
-    div.css('left', mousePos[0] - (100 + 420));
-  }else{
-    div.css('left', mousePos[0] + 100);
-  }
   for(let i=0; dbPicRefs["p" + slideCount]["trig" + id]["com"+i]!=null; i++){
     var newdiv = $('<div class="comment-div"></div>').appendTo(div);
     newdiv.attr("js-com-id",String(i));
@@ -395,16 +426,12 @@ function miscButtonClicked(){
 
 
     var obj = $(event.target);
-    var div = $('<div class="comment-box"></div>').appendTo("#pic-div");
+    var div = $('<div class="comment-box misc-box"></div>').appendTo("#real-pic-div");
     //div.on('mousedown.commentBox', mainCommentBoxClicked);
     var credit = dbPicRefs["p" + slideCount]['misc']['credit'];
     var date = dbPicRefs["p" + slideCount]['misc']['date'];
     var place =  dbPicRefs["p" + slideCount]['misc']['place'];
     var triggerNum = Object.keys(dbPicRefs['p'+slideCount]).length - 1;
-    div.css("bottom", "10px");
-    div.css("right", "120px");
-    div.css("height", "auto");
-    div.css("width", "auto");
 
 
     var creditP = $('<p class="white misc-text"></p>').html("撮影: " +  credit).appendTo(div);
@@ -512,7 +539,7 @@ function newComButtonClicked(){
     for(var i=0; i<caution_text.length; i++){
       var caution = $('<p class="new-com-caution"></p>').html(caution_text[i]).appendTo(cautionDiv);
     }
-    $('<div class="nice-wrap"><input class="nice-textbox" id="tb_speciality" type="text"/><label class="nice-label" >あなたを一言で表すと (例: 靴マニア, 建築デザイン好き, など)</label></div>').appendTo(".new-com-div");
+    $('<div class="nice-wrap"><input class="nice-textbox" id="tb_speciality" type="text"/><label class="nice-label" >あなたを一言で表すと</label></div>').appendTo(".new-com-div");
     $('<div class="nice-wrap"><input class="nice-textbox" id="tb_name" type="text"/><label class="nice-label" >あなたのニックネーム</label></div>').appendTo(".new-com-div");
     $('<div class="nice-wrap"><input class="nice-textbox" id="tb_title" type="text"/><label class="nice-label" >視点のタイトル</label></div>').appendTo(".new-com-div");
     $('<div class="nice-wrap"><textarea rows=5 class="nice-textbox" id="tb_comment" type="text"/><label class="nice-label" >どんな視点？</label></div>').appendTo(".new-com-div");
@@ -523,6 +550,9 @@ function newComButtonClicked(){
     var tb_comment = $("#tb_comment");
 
     $('.nice-textbox').blur(function() {
+      if($(".nice-label").val().length===0){
+        $(this).parent().find(".nice-label").removeClass("focus");
+      }
         if($(this).val().length === 0){
           $(this).parent().find(".nice-label").removeClass("focus");
         }
@@ -531,6 +561,18 @@ function newComButtonClicked(){
       .focusin(function(e) {
         $(":focus").parent().find(".nice-label").addClass("focus");
       });
+
+    $('label').on('mousedown', function(){
+      $(".nice-label").removeClass("focus");
+      $(this).parent().find(".nice-label").addClass("focus");
+    });
+
+    if($(window).width() < 600){
+      var closeButton = $('<img class="phone-close" src="img/times-white.png">').appendTo(div);
+      closeButton.on('mousedown', function(){
+        pictureClicked();
+      });
+    }
 
     var submitButton = $('<button type="button" class="new-com-button new-com-submit">投稿<button>').appendTo(".new-com-div");
 
