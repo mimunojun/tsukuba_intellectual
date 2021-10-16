@@ -3,10 +3,14 @@
 wip is here https://nuink.github.io/TisikijinWEB/
 
 ## changelog
-### 10/15 responsive_0.1
+### 10/16 responsive_0.4 main content
+・スマホ用にメインの写真表示部を変更した<br>
+・PC版もアイコンなどデザインを変更した<br>
+### 10/15 responsive_0.1~0.3
 ・iPhoneXを想定したレスポンシブデザインを実装した<br>
 ・一通りした<br>
 ・写真を実際にコンテンツに使用する写真に絞った<br>
+・動画がスマホでも流れるようになった
 ### 10/04_3 scrollbar-cusomize
 ・スクロールバーをカスタマイズした　目立たないように<br>
 ### 10/04_2 twi-share
