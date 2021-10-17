@@ -183,18 +183,24 @@ div{
 }
 
 .howto-container{
-  padding: 50px;
+  padding: 50px 50px;
+}
+
+.howto-container p{
+  line-height: 28px;
 }
 
 .howto-container-1{
   padding-top: 0px;
+  text-align: left;
 }
 
 .howto-inputhere{
   background: #f8f2ff;
-  width: 80vw;
+  width: 60vw;
   margin: 0 auto;
   border-radius: 30px;
+  margin-top: 30px;
 }
 
 #concept h2.howto-title{
@@ -204,6 +210,18 @@ div{
   width: 5em;
   margin: 0 auto;
 
+}
+
+.howto-h2{
+  background-color: #4a4a4a;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px 0px;
+  color: white;
+}
+
+.howto-inputhere .howto-container-1 .container{
+  padding: 0px 20px 50px 20px;
 }
 
 .concept-howto{
@@ -220,6 +238,10 @@ div{
 
 }
 
+.in-concept.container {
+  padding: 15px;
+}
+
 #concept h2{
   width: 15em;
   margin: 0 auto;
@@ -227,10 +249,15 @@ div{
   font-size: 45px;
   color:var(--t-black);
   border-bottom: solid 12px var(--accent);
+  margin-bottom: 30px;
 }
 
 #concept span{
   font-size: 36px;
+}
+
+.serif{
+  font-family: 'Noto Serif JP', serif;
 }
 
 #content{
@@ -375,8 +402,10 @@ div{
   display: inline-block;
   text-align: left;
   width: 45%;
-  margin: 5px 10px 30px 10px;
+  margin: 5px 10px 40px 10px;
   overflow: hidden;
+  vertical-align: top;
+
 }
 
 #shoutout h3{
@@ -384,7 +413,7 @@ div{
   font-weight: 700;
   font-size: 30px;
   margin-bottom:20px;
-  margin: 0 0 0 30px;
+  margin: 0 0 0 0px;
   color:var(--t-black);
   width: 100%;
 }
@@ -393,7 +422,7 @@ div{
   display: inline-block;
   font-weight: 700;
   font-size: 22px;
-  margin-left:30px;
+  margin-left:0px;
   color:var(--t-black);
 }
 
@@ -401,16 +430,32 @@ div{
   content:':';
 }
 
+#shoutout h5{
+  text-align: left;
+  background-color: #4a4a4a;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px 0px;
+  color: white;
+  padding-left: 36px;
+}
+
+#shoutout .member-div{
+  padding: 10px 50px;
+  text-align: left;
+}
+
 #shoutout .member p{
-  margin: 15px 30px;
+  margin: 15px 0px;
 }
 
 #shoutout a{
   text-decoration: underline;
   text-decoration-color: #1a0dab;
   font-weight:300;
-  margin-left: 30px;
+  margin-left: 0px;
   padding-bottom: 20px;
+  font-size: 16px;
 }
 
 #footer{
@@ -1004,11 +1049,13 @@ b{
   .container{
     padding: 12px;
     margin: 20px 0px;
+    font-size: 4vw;
   }
 
   .howto-container.container{
     margin: 0px;
   }
+
 
   #concept h2{
     font-size: 7vw;
@@ -1024,6 +1071,8 @@ b{
     font-size: 6vw;
     border-bottom: solid 4px var(--accent);
   }
+
+
 
   #content h2{
     font-size: 7vw;
@@ -1204,6 +1253,11 @@ b{
   .close-button{
     width: 6vw;
   }
+
+  .in-concept.container {
+    padding: 0px;
+  }
+
 
 }
 

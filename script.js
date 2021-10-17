@@ -53,7 +53,7 @@ const loadIntervalId = setInterval(() =>{
         var hSize = $(window).height();
         $('.cover').height(hSize); // アドレスバーを除いたサイズを付与
       }else{
-        $('#title').height($(window).height()));
+        $('#title').height($(window).height());
       }
       $("body").removeClass("no-vscroll");
       clearInterval(loadIntervalId);　//intervalIdをclearIntervalで指定している
@@ -707,12 +707,23 @@ function howtoClicked(){
   if($(".howto-container").length == 0){
     button.html("歩き方を閉じる");
     var howtoContainer = $('<div class="container howto-container"></div>').appendTo(".howto-inputhere");
-    var howtoContainer_1 = $('<div class="container howto-container howto-container-1"></div>').appendTo(".howto-inputhere");
+    var howtoContainer_1 = $('<div class="howto-container howto-container-1"></div>').appendTo(".howto-inputhere");
+    var htc_0 = $('<div class="container"></div>').appendTo(howtoContainer_1);
+    var htc_1 = $('<div class="container"></div>').appendTo(howtoContainer_1);
+    var htc_2 = $('<div class="container"></div>').appendTo(howtoContainer_1);
     $('<h2 class="howto-title">歩き方</h2>').appendTo(howtoContainer);
-    $('<p>あるきかたのせつめいせつめい</p>').appendTo(howtoContainer_1);
-    $('<p>あるきかたのせつめいせつめい</p>').appendTo(howtoContainer_1);
-    $('<p>あるきかたのせつめいせつめい</p>').appendTo(howtoContainer_1);
-    $('<p>多分もっと長くなる</p>').appendTo(howtoContainer_1);
+    $('<p class="howto-h2">Step1　写真を選ぶ</p>').appendTo(htc_0);
+    $('<p>全6枚の筑波大学構内の写真から、視点をみたいものを選んでください。</p>').appendTo(htc_0);
+    $('<p>中には昔の筑波大学の様子を写したレアな写真も…？</p>').appendTo(htc_0);
+    $('<p>撮影場所等の詳細情報は右下のボタンからチェックできます。</p>').appendTo(htc_0);
+    $('<p class="howto-h2">Step2　知識人の視点を見る</p>').appendTo(htc_1);
+    $('<p>様々な知識人の視点が写真のいたるところに隠されています。</p>').appendTo(htc_1);
+    $('<p>クリックして個性豊かな視点を探してみてください。</p>').appendTo(htc_1);
+    $('<p class="howto-h2">Step3　あなたならではの視点を共有しよう</p>').appendTo(htc_2);
+    $('<p>面白い視点を見つけたら、ぜひいいねボタンを押してください。</p>').appendTo(htc_2);
+    $('<p>知識人の着眼点に対する"あなたならでは"の視点も募集中！</p>').appendTo(htc_2);
+    $('<p>紫色が知識人の視点、オレンジ色がみなさんの視点になっています。</p>').appendTo(htc_2);
+
 
     var containerHeight = howtoContainer.outerHeight(true) + howtoContainer_1.outerHeight(true);
 
