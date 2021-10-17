@@ -3,6 +3,8 @@
 wip is here https://nuink.github.io/TisikijinWEB/
 
 ## changelog
+### 10/17 justify texts
+・文面をきちんとしたものに置き換えた<br>
 ### 10/16 responsive_0.4 main content
 ・スマホ用にメインの写真表示部を変更した<br>
 ・PC版もアイコンなどデザインを変更した<br>
