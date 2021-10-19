@@ -440,7 +440,7 @@ div{
   background-color: #4a4a4a;
   padding: 10px;
   border-radius: 5px;
-  margin: 10px 0px;
+  margin: 10px auto;
   color: white;
   padding-left: 36px;
   max-width: 1300px;
@@ -887,6 +887,7 @@ b{
   height: auto;
   width: auto;
   display: block;
+
 }
 
 .white.misc-text{
@@ -1246,9 +1247,9 @@ b{
 
   .comment-box.misc-box{
     padding: 10px 10px;
-    bottom: -60%;
+    bottom: 0%;
     right: 25%;
-    transform: translate(50%);
+    transform: translate(50%, -13%);
   }
 
   .misc-text{
