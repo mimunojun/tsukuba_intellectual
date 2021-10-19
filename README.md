@@ -3,6 +3,9 @@
 wip is here https://nuink.github.io/TisikijinWEB/
 
 ## changelog
+### 10/19 humberger-menu favicon
+・スマホ用ハンバーガーメニューつくった<br>
+・faviconつけた<br>
 ### 10/17 justify texts
 ・文面をきちんとしたものに置き換えた<br>
 ### 10/16 responsive_0.4 main content
