@@ -1009,9 +1009,34 @@ $(window).on('load resize', function(){
   }else{
     $("#nav_bar").hide();
     $(".name_txt p").html("知識人と歩く<br>筑波大学");
-    $(".scroll_message").hide();
+    $(".scroll_message").show();
+    var hamButton = $('<img class="ham-button" src=img/misc-icon.png>').appendTo($("#title"));
+    hamButton.on('mousedown', function(){
+      hamButtonClicked();
+    });
   }
 });
+
+function hamButtonClicked(){
+  var overlay = $('.ham-overlay');
+  var closeButton = $('.phone-close.ham-close');
+  overlay.fadeIn('slow');
+  $('.ham-button').fadeOut('slow');
+  $(".ham-menu").fadeIn('slow');
+
+  closeButton.on('mousedown', function(){
+    hamButtonClose();
+  });
+
+  $("body").addClass("no-vscroll");
+}
+
+function hamButtonClose(){
+  $('.ham-overlay').fadeOut();
+  $("body").removeClass("no-vscroll");
+  $('.ham-button').fadeIn('slow');
+  $(".ham-menu").fadeOut('slow');
+}
 
 function getParam(name, url) {
     if (!url) url = window.location.href;
