@@ -67,7 +67,7 @@ div{
   display: inline-block;
 
   margin-right: 30px;
-  font-size: 1.5vw;
+  font-size: 1.4vw;
   color: var(--t-white);
   font-weight: 500;
   line-height: 120px;
@@ -443,11 +443,13 @@ div{
   margin: 10px 0px;
   color: white;
   padding-left: 36px;
+  max-width: 1300px;
 }
 
 #shoutout .member-div{
   padding: 10px 50px;
   text-align: left;
+  max-width: 1300px;
 }
 
 #shoutout .member p{
@@ -599,6 +601,7 @@ div{
   left: 10px;
   z-index: 4;
   position: absolute;
+  font-size: 16px;
 }
 
 .no-vscroll{
@@ -665,6 +668,7 @@ div{
   padding: 10px;
   text-align: left;
   z-index: 4;
+  font-size: 16px;
 }
 
 
@@ -1048,7 +1052,7 @@ b{
     text-orientation: sideways;
     bottom: -30px;
     left: -10px;
-    font-size: 9vh;
+    font-size: 8.3vh;
   }
 
   .container{
@@ -1116,6 +1120,7 @@ b{
     margin-right: 0px;
     width: 100%;
     line-height: 50px;
+    font-size: 5vw;
   }
 
   .nuink-selfpromo{
@@ -1337,7 +1342,7 @@ b{
   .ham-menu-logo{
     width: 50vw;
     position: absolute;
-    top: 94%;
+    top: 90%;
     right: 50%;
     transform: translate(50%);
   }
