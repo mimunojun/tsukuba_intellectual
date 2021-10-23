@@ -7,13 +7,13 @@
 // }
 
 
-var images = new Array();
-var slideImg = new Array("img/00.jpg","img/02.jpeg","img/03.jpeg","img/06.jpg","img/07.jpg","img/08.jpg",);
+let images = new Array();
+let slideImg = new Array("img/00.jpg","img/02.jpeg","img/03.jpeg","img/06.jpg","img/07.jpg","img/08.jpg",);
 window.onload = function(){
 
     // 画像プリロード
     for (i = 0; i < images.length; i++){
-        var img = document.createElement('img');
+        let img = document.createElement('img');
         img.src = slideImg[i];
     }
 
@@ -45,12 +45,12 @@ const countUp = () =>{
 const loadIntervalId = setInterval(() =>{
   countUp();
 
-  if(loadProgress == 100){
+  if(loadProgress === 100){
     setTimeout(() =>{
       $("#load-div").fadeOut("slow");
       if($(window).width() >= 600){
         $("#nav_bar").fadeIn();
-        var hSize = $(window).height();
+        let hSize = $(window).height();
         $('.cover').height(hSize); // アドレスバーを除いたサイズを付与
       }else{
         $('#title').height($(window).height());
@@ -77,20 +77,20 @@ const loadIntervalId = setInterval(() =>{
 
 prepImages();
 
-var slideShow = $("#sshow");
-var slidePointDiv = $("#points")
-var slidePoint = $(".slide-point");
-var modalOverlay = $('<div id="modal-overlay" href="javascript:" onclick="bgClicked();"></div>').appendTo("body");
-var picTriggers = [];
-var dbPicRefs = [];
-var slidePoints = [];
-var slideCount = getParam('sc');
-var mainPic;
-var picDiv;
-var picRef;
-var picSizeRatio;
-var counter = 0;
-var counterP;
+let slideShow = $("#sshow");
+let slidePointDiv = $("#points")
+let slidePoint = $(".slide-point");
+let modalOverlay = $('<div id="modal-overlay" href="javascript:" onclick="bgClicked();"></div>').appendTo("body");
+let picTriggers = [];
+let dbPicRefs = [];
+let slidePoints = [];
+let slideCount = getParam('sc');
+let mainPic;
+let picDiv;
+let picRef;
+let picSizeRatio;
+let counter = 0;
+let counterP;
 
 //data: [pos1,pos2,[title,comment,speciality,name]]
 
@@ -111,7 +111,7 @@ var counterP;
 
 //スライド下の点の生成
 // for(let i=0; i<11; i++){
-//   var slidePointClone = slidePoint.clone().appendTo("#points");
+//   let slidePointClone = slidePoint.clone().appendTo("#points");
 //   slidePointClone.css("background-color", "gray");
 //   slidePointClone.css("position", "absolute");
 //   slidePointClone.css("left", 40*i);
@@ -127,7 +127,7 @@ var counterP;
 function slideLeft(){
   slidePoints[slideCount].css("background-color","gray");
   slideCount -= 1;
-  if(slideCount == -1) slideCount = 10;
+  if(slideCount === -1) slideCount = 10;
   slideShow.attr("src", slideImg[slideCount]);
   slidePoints[slideCount].css("background-color","white");
 }
@@ -135,7 +135,7 @@ function slideLeft(){
 function slideRight(){
   slidePoints[slideCount].css("background-color","gray");
   slideCount += 1;
-  if(slideCount == 11) slideCount = 0;
+  if(slideCount === 11) slideCount = 0;
   slideShow.attr("src", slideImg[slideCount]);
   slidePoints[slideCount].css("background-color","white");
 }
@@ -143,9 +143,9 @@ function slideRight(){
 function slideClicked(){
   picDiv = $('<div id="real-pic-div"></div').appendTo("body");
   mainPic = $('<img id="main-pic" onclick="pictureClicked();">').appendTo(picDiv);
-  var image = new Image();
+  let image = new Image();
   image.src = slideImg[slideCount];
-  var picAspRatio = image.width/image.height;
+  let picAspRatio = image.width/image.height;
   mainPic.fadeIn("fast").queue(function(){
     if($(window).width() < 600){
       picSizeRatio = $("#main-pic").css("height").replace("px","") / image.height;
@@ -170,25 +170,25 @@ function slideClicked(){
       modalOverlay.fadeIn("slow");
       picDiv.fadeIn();
 
-      var closeButton = $('<img class="close-button" src=img/times.png>').appendTo($("#real-pic-div"));
+      let closeButton = $('<img class="close-button" src=img/times.png>').appendTo($("#real-pic-div"));
       closeButton.on('mousedown', function(){
         bgClicked();
       });
 
-      var miscButton = $('<img class="misc-button" src=img/misc-icon.png>').appendTo($("#real-pic-div"));
+      let miscButton = $('<img class="misc-button" src=img/misc-icon.png>').appendTo($("#real-pic-div"));
       miscButton.on('mousedown', function(){
         miscButtonClicked();
       });
 
-      var credit = "撮影: " + dbPicRefs["p" + slideCount]['misc']['credit'];
-      var creditP = $('<p class="pic-credit"></p>').html(credit).appendTo($("#real-pic-div"));
+      let credit = "撮影: " + dbPicRefs["p" + slideCount]['misc']['credit'];
+      let creditP = $('<p class="pic-credit"></p>').html(credit).appendTo($("#real-pic-div"));
 
-      var counterDiv = $('<div class="counter-box"></div>').appendTo($("#real-pic-div"));
-      var trigerNum = Object.keys(dbPicRefs['p'+slideCount]).length - 1;
+      let counterDiv = $('<div class="counter-box"></div>').appendTo($("#real-pic-div"));
+      let trigerNum = Object.keys(dbPicRefs['p'+slideCount]).length - 1;
       counterP = $('<p class="white"></p>').html('見つけた視点: ' + counter+'/'+trigerNum).appendTo(counterDiv);
       counterDiv.fadeIn();
 
-      var bottomDiv = $('<div class="bottom-div"></div>').appendTo($("#real-pic-div"));
+      let bottomDiv = $('<div class="bottom-div"></div>').appendTo($("#real-pic-div"));
 
       makePicDiv(picAspRatio);
       loadTrigger(picSizeRatio);
@@ -201,13 +201,13 @@ function slideClicked(){
 }
 
 function counterUpdate(){
-  var trigerNum = Object.keys(dbPicRefs['p'+slideCount]).length - 1;
+  let trigerNum = Object.keys(dbPicRefs['p'+slideCount]).length - 1;
   counter += 1;
   counterP.html('見つけた視点: ' + counter+'/'+trigerNum);
 }
 
 $(window).resize(function(){
-  var image = new Image();
+  let image = new Image();
   image.src = slideImg[slideCount];
   picSizeRatio = $("#main-pic").css("height").replace("px","") / image.height;
   reposTrigger(picSizeRatio);
@@ -246,17 +246,17 @@ function loadTrigger(picSizeRatio){
   for(let i=0; dbPicRefs["p" + slideCount]["trig"+i]!=null; i++){
 
 
-    var x1 = dbPicRefs["p" + slideCount]["trig"+i].trigpos.split(',')[0];
-    var y1 = dbPicRefs["p" + slideCount]["trig"+i].trigpos.split(',')[1];
-    var x2 = dbPicRefs["p" + slideCount]["trig"+i].trigpos.split(',')[2];
-    var y2 = dbPicRefs["p" + slideCount]["trig"+i].trigpos.split(',')[3];
+    let x1 = dbPicRefs["p" + slideCount]["trig"+i].trigpos.split(',')[0];
+    let y1 = dbPicRefs["p" + slideCount]["trig"+i].trigpos.split(',')[1];
+    let x2 = dbPicRefs["p" + slideCount]["trig"+i].trigpos.split(',')[2];
+    let y2 = dbPicRefs["p" + slideCount]["trig"+i].trigpos.split(',')[3];
 
-    var cssTop = y1 * picSizeRatio;
-    var cssLeft = x1 * picSizeRatio;
-    var cssWidth = (x2-x1) * picSizeRatio;
-    var cssHeight = (y2-y1) * picSizeRatio;
+    let cssTop = y1 * picSizeRatio;
+    let cssLeft = x1 * picSizeRatio;
+    let cssWidth = (x2-x1) * picSizeRatio;
+    let cssHeight = (y2-y1) * picSizeRatio;
 
-    var newTrigger = $('<div href="javascript:" onclick="triggerClicked(event);" class="pic-trigger" clicked="false"></div>');
+    let newTrigger = $('<div href="javascript:" onclick="triggerClicked(event);" class="pic-trigger" clicked="false"></div>');
     newTrigger.css('top',cssTop);
     newTrigger.css('left',cssLeft);
     newTrigger.css('width',cssWidth);
@@ -273,15 +273,15 @@ function loadTrigger(picSizeRatio){
 function reposTrigger(picSizeRatio){
   for(let i=0; i<picTriggers.length; i++){
 
-    var x1 = dbPicRefs["p" + slideCount]["trig"+i].trigpos.split(',')[0];
-    var y1 = dbPicRefs["p" + slideCount]["trig"+i].trigpos.split(',')[1];
-    var x2 = dbPicRefs["p" + slideCount]["trig"+i].trigpos.split(',')[2];
-    var y2 = dbPicRefs["p" + slideCount]["trig"+i].trigpos.split(',')[3];
+    let x1 = dbPicRefs["p" + slideCount]["trig"+i].trigpos.split(',')[0];
+    let y1 = dbPicRefs["p" + slideCount]["trig"+i].trigpos.split(',')[1];
+    let x2 = dbPicRefs["p" + slideCount]["trig"+i].trigpos.split(',')[2];
+    let y2 = dbPicRefs["p" + slideCount]["trig"+i].trigpos.split(',')[3];
 
-    var cssTop = y1 * picSizeRatio;
-    var cssLeft = x1 * picSizeRatio;
-    var cssWidth = (x2-x1) * picSizeRatio;
-    var cssHeight = (y2-y1) * picSizeRatio;
+    let cssTop = y1 * picSizeRatio;
+    let cssLeft = x1 * picSizeRatio;
+    let cssWidth = (x2-x1) * picSizeRatio;
+    let cssHeight = (y2-y1) * picSizeRatio;
 
     picTriggers[i].css('top',cssTop);
     picTriggers[i].css('left',cssLeft);
@@ -310,8 +310,8 @@ function removeTrigger(){
 
 function makePicDiv(picAspRatio){
 
-  var height = $("#main-pic").css("height").replace("px","");
-  var width = picAspRatio * height;
+  let height = $("#main-pic").css("height").replace("px","");
+  let width = picAspRatio * height;
 
   picDiv.css("width", width+'px');
   picDiv.css("height", height+'px');
@@ -330,14 +330,14 @@ function triggerClicked(e){
   $(".comment-box").remove();
 
 
-  var obj = $(event.target);
-  var id = obj.attr('js-id');
-  var div = $('<div class="comment-box"></div>');
+  let obj = $(event.target);
+  let id = obj.attr('js-id');
+  let div = $('<div class="comment-box"></div>');
   div.attr('trig-id', id);
   //div.on('mousedown.commentBox', mainCommentBoxClicked);
-  var trigname = dbPicRefs["p" + slideCount]["trig" + id]["trigname"];
-  var trignameDiv = $('<div class="comment-trigname"></div>').appendTo(div);
-  var trignameP =  $('<p></p>').html(trigname).appendTo(trignameDiv);
+  let trigname = dbPicRefs["p" + slideCount]["trig" + id]["trigname"];
+  let trignameDiv = $('<div class="comment-trigname"></div>').appendTo(div);
+  let trignameP =  $('<p></p>').html(trigname).appendTo(trignameDiv);
   $("body").append(div);
   div.fadeIn();
   mousePos = [e.clientX, e.clientY];
@@ -359,7 +359,7 @@ function triggerClicked(e){
     div.css('left', '50%');
     div.css('transform','translate(-50%, -50%)');
 
-    var closeButton = $('<img class="phone-close" src="img/times-white.png">').appendTo(div);
+    let closeButton = $('<img class="phone-close" src="img/times-white.png">').appendTo(div);
     closeButton.on('mousedown', function(){
       pictureClicked();
     });
@@ -367,57 +367,57 @@ function triggerClicked(e){
   }
 
   for(let i=0; dbPicRefs["p" + slideCount]["trig" + id]["com"+i]!=null; i++){
-    var newdiv = $('<div class="comment-div"></div>').appendTo(div);
+    let newdiv = $('<div class="comment-div"></div>').appendTo(div);
     newdiv.attr("js-com-id",String(i));
     newdiv.attr("js-trig-id",String(id));
     newdiv.attr("com-from","intellectual");
-    var title = dbPicRefs["p" + slideCount]["trig" + id]["com"+i]["title"];
-    var text = dbPicRefs["p" + slideCount]["trig" + id]["com"+i]["text"];
-    var speciality = dbPicRefs["p" + slideCount]["trig" + id]["com"+i]["speciality"];
-    var name = dbPicRefs["p" + slideCount]["trig" + id]["com"+i]["name"];
-    var like = dbPicRefs["p" + slideCount]["trig" + id]["com"+i]["like"];
+    let title = dbPicRefs["p" + slideCount]["trig" + id]["com"+i]["title"];
+    let text = dbPicRefs["p" + slideCount]["trig" + id]["com"+i]["text"];
+    let speciality = dbPicRefs["p" + slideCount]["trig" + id]["com"+i]["speciality"];
+    let name = dbPicRefs["p" + slideCount]["trig" + id]["com"+i]["name"];
+    let like = dbPicRefs["p" + slideCount]["trig" + id]["com"+i]["like"];
 
-    var specialityP = $('<p class="comment-speciality"></p>').html(speciality).appendTo(newdiv);
-    var nameP = $('<p class="comment-name"></p>').html(name).appendTo(newdiv);
+    let specialityP = $('<p class="comment-speciality"></p>').html(speciality).appendTo(newdiv);
+    let nameP = $('<p class="comment-name"></p>').html(name).appendTo(newdiv);
 
-    var titleP = $('<p class="comment-title"></p>').html(title).appendTo(newdiv);
-    var textP = $('<p class="comment-text"></p>').html(text).appendTo(newdiv);
+    let titleP = $('<p class="comment-title"></p>').html(title).appendTo(newdiv);
+    let textP = $('<p class="comment-text"></p>').html(text).appendTo(newdiv);
 
-    var likeButton =  $('<i class="fas fa-thumbs-up comment-like-button" href="javascript:" liked="false"></i>').appendTo(newdiv);
+    let likeButton =  $('<i class="fas fa-thumbs-up comment-like-button" href="javascript:" liked="false"></i>').appendTo(newdiv);
     likeButton.on('mousedown', likeClicked);
-    var likeCount =  $('<span class ="comment-like-count"></span>').html("  "+like).appendTo(newdiv);
+    let likeCount =  $('<span class ="comment-like-count"></span>').html("  "+like).appendTo(newdiv);
   }
 
   for(let i=0; dbPicRefs["p" + slideCount]["trig" + id]["usercom"+i]!=null; i++){
-    var newdiv = $('<div class="comment-div"></div>').appendTo(div);
+    let newdiv = $('<div class="comment-div"></div>').appendTo(div);
     newdiv.attr("js-com-id",String(i));
     newdiv.attr("js-trig-id",String(id));
     newdiv.attr("com-from","user");
-    var title = dbPicRefs["p" + slideCount]["trig" + id]["usercom"+i]["title"];
-    var text = dbPicRefs["p" + slideCount]["trig" + id]["usercom"+i]["text"];
-    var speciality = dbPicRefs["p" + slideCount]["trig" + id]["usercom"+i]["speciality"];
-    var name = dbPicRefs["p" + slideCount]["trig" + id]["usercom"+i]["name"];
-    var like = dbPicRefs["p" + slideCount]["trig" + id]["usercom"+i]["like"];
+    let title = dbPicRefs["p" + slideCount]["trig" + id]["usercom"+i]["title"];
+    let text = dbPicRefs["p" + slideCount]["trig" + id]["usercom"+i]["text"];
+    let speciality = dbPicRefs["p" + slideCount]["trig" + id]["usercom"+i]["speciality"];
+    let name = dbPicRefs["p" + slideCount]["trig" + id]["usercom"+i]["name"];
+    let like = dbPicRefs["p" + slideCount]["trig" + id]["usercom"+i]["like"];
 
-    var specialityP = $('<p class="comment-speciality com-from-user"></p>').html(speciality).appendTo(newdiv);
-    var nameP = $('<p class="comment-name"></p>').html(name).appendTo(newdiv);
+    let specialityP = $('<p class="comment-speciality com-from-user"></p>').html(speciality).appendTo(newdiv);
+    let nameP = $('<p class="comment-name"></p>').html(name).appendTo(newdiv);
 
-    var titleP = $('<p class="comment-title com-from-user"></p>').html(title).appendTo(newdiv);
-    var textP = $('<p class="comment-text"></p>').html(text).appendTo(newdiv);
+    let titleP = $('<p class="comment-title com-from-user"></p>').html(title).appendTo(newdiv);
+    let textP = $('<p class="comment-text"></p>').html(text).appendTo(newdiv);
 
-    var likeButton =  $('<i class="fas fa-thumbs-up comment-like-button" href="javascript:" liked="false"></i>').appendTo(newdiv);
+    let likeButton =  $('<i class="fas fa-thumbs-up comment-like-button" href="javascript:" liked="false"></i>').appendTo(newdiv);
     likeButton.on('mousedown', likeClicked);
-    var likeCount =  $('<span class ="comment-like-count"></span>').html("  "+like).appendTo(newdiv);
+    let likeCount =  $('<span class ="comment-like-count"></span>').html("  "+like).appendTo(newdiv);
   }
 
-  if(obj.attr('clicked')=='false'){
+  if(obj.attr('clicked')==='false'){
     counterUpdate();
     obj.attr('clicked', 'true');
   }
 
 
 
-  var newComButton = $('<button class="new-com-button">新たな視点を投稿する</button>').appendTo(div);
+  let newComButton = $('<button class="new-com-button">新たな視点を投稿する</button>').appendTo(div);
   newComButton.on('mousedown', newComButtonClicked);
 
 }
@@ -427,19 +427,19 @@ function miscButtonClicked(){
     $(".comment-box").remove();
 
 
-    var obj = $(event.target);
-    var div = $('<div class="comment-box misc-box"></div>').appendTo("#real-pic-div");
+    let obj = $(event.target);
+    let div = $('<div class="comment-box misc-box"></div>').appendTo("#real-pic-div");
     //div.on('mousedown.commentBox', mainCommentBoxClicked);
-    var credit = dbPicRefs["p" + slideCount]['misc']['credit'];
-    var date = dbPicRefs["p" + slideCount]['misc']['date'];
-    var place =  dbPicRefs["p" + slideCount]['misc']['place'];
-    var triggerNum = Object.keys(dbPicRefs['p'+slideCount]).length - 1;
+    let credit = dbPicRefs["p" + slideCount]['misc']['credit'];
+    let date = dbPicRefs["p" + slideCount]['misc']['date'];
+    let place =  dbPicRefs["p" + slideCount]['misc']['place'];
+    let triggerNum = Object.keys(dbPicRefs['p'+slideCount]).length - 1;
 
 
-    var creditP = $('<p class="white misc-text"></p>').html("撮影: " +  credit).appendTo(div);
-    var dateP = $('<p class="white misc-text"></p>').html("撮影日: " + date).appendTo(div);
-    var placeP = $('<p class="white misc-text"></p>').html("場所: " + place).appendTo(div);
-    var shareButton = $('<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>').appendTo(div);
+    let creditP = $('<p class="white misc-text"></p>').html("撮影: " +  credit).appendTo(div);
+    let dateP = $('<p class="white misc-text"></p>').html("撮影日: " + date).appendTo(div);
+    let placeP = $('<p class="white misc-text"></p>').html("場所: " + place).appendTo(div);
+    let shareButton = $('<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>').appendTo(div);
     shareButton.attr('data-url', 'https://nuink.github.io/TisikijinWEB/'+'?sc='+slideCount);
     shareButton.attr('data-text', '筑波大学の「'+place+'」の景色を見ています。専門家の視点を'+triggerNum+'個中'+counter+'個発見しました！')
     div.fadeIn();
@@ -457,27 +457,27 @@ function prepReading(){
     picRef = firebase.database().ref();
     picRef.on('value', (snapshot) => {
         dbPicRefs = snapshot.val();
-        console.log(dbPicRefs);
+        //console.log(dbPicRefs);
 
         //console.log(trig1);
     });
 }
 
 function likeClicked(){
-  var target = $(event.target);
-  var div = target.parent();
-  var comId = div.attr("js-com-id");
-  var trigId = div.attr("js-trig-id");
-  var liked = target.attr("liked");
-  var like;
+  let target = $(event.target);
+  let div = target.parent();
+  let comId = div.attr("js-com-id");
+  let trigId = div.attr("js-trig-id");
+  let liked = target.attr("liked");
+  let like;
 
-  if(div.attr("com-from") == "intellectual"){
+  if(div.attr("com-from") === "intellectual"){
     like = dbPicRefs["p" + slideCount]["trig" + trigId]["com"+comId]["like"];
   }else{
     like = dbPicRefs["p" + slideCount]["trig" + trigId]["usercom"+comId]["like"];
   }
 
-  if(liked == "false"){
+  if(liked === "false"){
     target.css("color","var(--accent)");
     target.attr("liked","true");
     like += 1;
@@ -507,7 +507,7 @@ function likeClicked(){
 
 
 
-  if(div.attr("com-from") == "intellectual"){
+  if(div.attr("com-from") === "intellectual"){
     picRef.child("p" + slideCount+"/"+"trig"+trigId+"/com"+comId).update({
       "like": like
     });
@@ -522,39 +522,37 @@ function likeClicked(){
 }
 
 function newComButtonClicked(){
-  var trigId = $(event.target).parent().attr('trig-id');
-  var trigname = dbPicRefs["p" + slideCount]["trig" + trigId]["trigname"];
-  var description_text = "あなたならこの"+trigname+"にどのような視点を与えますか。<b>あなたならではの視点</b>を書いてみてください。";
-  var caution_text = [
+  let trigId = $(event.target).parent().attr('trig-id');
+  let trigname = dbPicRefs["p" + slideCount]["trig" + trigId]["trigname"];
+  let description_text = "あなたならこの"+trigname+"にどのような視点を与えますか。<b>あなたならではの視点</b>を書いてみてください。";
+  let caution_text = [
     "<b>以下のいずれかにあてはまるコメントは禁止されています。</b>",
     "・第三者を攻撃するようなもの",
     "・公序良俗に反するもの",
     "・明らかに内容に意味が無いもの",
     "・その他不適切だと判断されるもの"
   ]
-  if($('.new-com-div').length == 0){
-    var div = $('<div class="comment-box new-com-div"></div>').appendTo("body");
+  if($('.new-com-div').length === 0){
+    let div = $('<div class="comment-box new-com-div"></div>').appendTo("body");
     div.attr('trig-id', trigId);
-    var title = $('<p class="new-com-title"></p>').html("新たな視点の投稿").appendTo(".new-com-div");
-    var description = $('<p class="new-com-description"></p>').html(description_text).appendTo(".new-com-div");
-    var cautionDiv = $('<div class="new-com-caution-div"></div>').appendTo(".new-com-div");
-    for(var i=0; i<caution_text.length; i++){
-      var caution = $('<p class="new-com-caution"></p>').html(caution_text[i]).appendTo(cautionDiv);
+    let title = $('<p class="new-com-title"></p>').html("新たな視点の投稿").appendTo(".new-com-div");
+    let description = $('<p class="new-com-description"></p>').html(description_text).appendTo(".new-com-div");
+    let cautionDiv = $('<div class="new-com-caution-div"></div>').appendTo(".new-com-div");
+    for(let i=0; i<caution_text.length; i++){
+      let caution = $('<p class="new-com-caution"></p>').html(caution_text[i]).appendTo(cautionDiv);
     }
     $('<div class="nice-wrap"><input class="nice-textbox" id="tb_speciality" type="text"/><label class="nice-label" >あなたを一言で表すと</label></div>').appendTo(".new-com-div");
     $('<div class="nice-wrap"><input class="nice-textbox" id="tb_name" type="text"/><label class="nice-label" >あなたのニックネーム</label></div>').appendTo(".new-com-div");
     $('<div class="nice-wrap"><input class="nice-textbox" id="tb_title" type="text"/><label class="nice-label" >視点のタイトル</label></div>').appendTo(".new-com-div");
     $('<div class="nice-wrap"><textarea rows=5 class="nice-textbox" id="tb_comment" type="text"/><label class="nice-label" >どんな視点？</label></div>').appendTo(".new-com-div");
 
-    var tb_speciality = $("#tb_speciality");
-    var tb_name = $("#tb_name");
-    var tb_title = $("#tb_title");
-    var tb_comment = $("#tb_comment");
+    let tb_speciality = $("#tb_speciality");
+    let tb_name = $("#tb_name");
+    let tb_title = $("#tb_title");
+    let tb_comment = $("#tb_comment");
 
     $('.nice-textbox').blur(function() {
-      if($(".nice-label").val().length===0){
-        $(this).parent().find(".nice-label").removeClass("focus");
-      }
+
         if($(this).val().length === 0){
           $(this).parent().find(".nice-label").removeClass("focus");
         }
@@ -565,28 +563,27 @@ function newComButtonClicked(){
       });
 
     $('label').on('mousedown', function(){
-      $(".nice-label").removeClass("focus");
       $(this).parent().find(".nice-label").addClass("focus");
     });
 
     if($(window).width() < 600){
-      var closeButton = $('<img class="phone-close" src="img/times-white.png">').appendTo(div);
+      let closeButton = $('<img class="phone-close" src="img/times-white.png">').appendTo(div);
       closeButton.on('mousedown', function(){
         pictureClicked();
       });
     }
 
-    var submitButton = $('<button type="button" class="new-com-button new-com-submit">投稿<button>').appendTo(".new-com-div");
+    let submitButton = $('<button type="button" class="new-com-button new-com-submit">投稿<button>').appendTo(".new-com-div");
 
     submitButton.click(function(){
       if(tb_speciality.val().length * tb_name.val().length * tb_title.val().length * tb_comment.val().length != 0){
-        var specialityTextFix = tb_speciality.val().replace(/</g, '＜').replace(/>/g, '＞').replace(/\r?\n/g, ' ');
-        var nameTextFix = tb_name.val().replace(/</g, '＜').replace(/>/g, '＞').replace(/\r?\n/g, ' ');
-        var titleTextFix = tb_title.val().replace(/</g, '＜').replace(/>/g, '＞').replace(/\r?\n/g, ' ');
-        var commentTextFix = tb_comment.val().replace(/</g, '＜').replace(/>/g, '＞').replace(/\r?\n/g, '<br>');
+        let specialityTextFix = tb_speciality.val().replace(/</g, '＜').replace(/>/g, '＞').replace(/\r?\n/g, ' ');
+        let nameTextFix = tb_name.val().replace(/</g, '＜').replace(/>/g, '＞').replace(/\r?\n/g, ' ');
+        let titleTextFix = tb_title.val().replace(/</g, '＜').replace(/>/g, '＞').replace(/\r?\n/g, ' ');
+        let commentTextFix = tb_comment.val().replace(/</g, '＜').replace(/>/g, '＞').replace(/\r?\n/g, '<br>');
         preSubmitButtonClicked(specialityTextFix, nameTextFix, titleTextFix, commentTextFix);
       }else{
-        if(tb_speciality.val().length == 0){
+        if(tb_speciality.val().length === 0){
           tb_speciality.css('background-color', 'var(--caution)');
           $(function(){
             setTimeout(function(){
@@ -594,7 +591,7 @@ function newComButtonClicked(){
             },500);
           });
         }
-        if(tb_name.val().length == 0){
+        if(tb_name.val().length === 0){
           tb_name.css('background-color', 'var(--caution)');
           $(function(){
             setTimeout(function(){
@@ -602,7 +599,7 @@ function newComButtonClicked(){
             },500);
           });
         }
-        if(tb_title.val().length == 0){
+        if(tb_title.val().length === 0){
           tb_title.css('background-color', 'var(--caution)');
           $(function(){
             setTimeout(function(){
@@ -610,7 +607,7 @@ function newComButtonClicked(){
             },500);
           });
         }
-        if(tb_comment.val().length == 0){
+        if(tb_comment.val().length === 0){
           tb_comment.css('background-color', 'var(--caution)');
           $(function(){
             setTimeout(function(){
@@ -636,45 +633,47 @@ function mainCommentBoxClicked(){
 
 function preSubmitButtonClicked(speciality, name, title, comment){
   if($(".new-presubmitted-div").length == 0){
-    var confirmDiv = $('<div class="comment-box new-presubmitted-div"></div>').appendTo("body");
-    var confirmTextP = $('<p class="new-com-description"></p>').html("あなたの視点は以下のように表示され、公開されます。").appendTo(confirmDiv);
+    let confirmDiv = $('<div class="comment-box new-presubmitted-div"></div>').appendTo("body");
+    let confirmTextP = $('<p class="new-com-description"></p>').html("あなたの視点は以下のように表示され、公開されます。").appendTo(confirmDiv);
 
-    var newdiv = $('<div class="comment-div"></div>').appendTo(confirmDiv);
-    var specialityP = $('<p class="comment-speciality com-from-user"></p>').html(speciality).appendTo(newdiv);
-    var nameP = $('<p class="comment-name"></p>').html(name).appendTo(newdiv);
-    var titleP = $('<p class="comment-title com-from-user"></p>').html(title).appendTo(newdiv);
-    var textP = $('<p class="comment-text"></p>').html(comment).appendTo(newdiv);
+    let newdiv = $('<div class="comment-div"></div>').appendTo(confirmDiv);
+    let specialityP = $('<p class="comment-speciality com-from-user"></p>').html(speciality).appendTo(newdiv);
+    let nameP = $('<p class="comment-name"></p>').html(name).appendTo(newdiv);
+    let titleP = $('<p class="comment-title com-from-user"></p>').html(title).appendTo(newdiv);
+    let textP = $('<p class="comment-text"></p>').html(comment).appendTo(newdiv);
 
-    var likeButton =  $('<i class="fas fa-thumbs-up comment-like-button" href="javascript:" liked="false"></i>').appendTo(newdiv);
-    var likeCount =  $('<span class ="comment-like-count"></span>').html(" 0").appendTo(newdiv);
+    let likeButton =  $('<i class="fas fa-thumbs-up comment-like-button" href="javascript:" liked="false"></i>').appendTo(newdiv);
+    let likeCount =  $('<span class ="comment-like-count"></span>').html(" 0").appendTo(newdiv);
 
-    var confirmButton = $('<button class="new-com-button new-com-presubmit">確認</button>').appendTo(confirmDiv);
-    var cancelButton = $('<p class="new-com-presubmit-cancel">キャンセル</p>').appendTo(confirmDiv);
+    let confirmButton = $('<button class="new-com-button new-com-presubmit">確認</button>').appendTo(confirmDiv);
+    let cancelButton = $('<p class="new-com-presubmit-cancel">キャンセル</p>').appendTo(confirmDiv);
+
+    confirmButton.click(function(){
+      submitButtonClicked(speciality, name, title, comment);
+    });
+    cancelButton.click(function(){
+      confirmDiv.fadeOut().queue(function(){
+        this.remove();
+      });
+    });
+
+    confirmDiv.fadeIn();
   }
 
-  confirmButton.click(function(){
-    submitButtonClicked(speciality, name, title, comment);
-  });
-  cancelButton.click(function(){
-    confirmDiv.fadeOut().queue(function(){
-      this.remove();
-    });
-  });
 
-  confirmDiv.fadeIn();
 }
 
 function submitButtonClicked(speciality, name, title, comment){
-  var picId = slideCount;
-  var trigId = $(".new-com-div").attr('trig-id');
-  var userComNum = dbPicRefs["p" + slideCount]["trig" + trigId]["userComNum"];
+  let picId = slideCount;
+  let trigId = $(".new-com-div").attr('trig-id');
+  let userComNum = dbPicRefs["p" + slideCount]["trig" + trigId]["userComNum"];
 
 
   $(".comment-box").fadeOut().queue(function(){
     this.remove();
   });
-  var div = $('<div class="comment-box new-submitted-div"></div>').appendTo("body");
-  var text = $('<p class="new-submitted-text"></p>').html("投稿されました。").appendTo(".new-submitted-div");
+  let div = $('<div class="comment-box new-submitted-div"></div>').appendTo("body");
+  let text = $('<p class="new-submitted-text"></p>').html("投稿されました。").appendTo(".new-submitted-div");
 
   $(function(){
     setTimeout(function(){
@@ -683,7 +682,7 @@ function submitButtonClicked(speciality, name, title, comment){
       });
     },2000);
   });
-  // var commentNum = Object.keys(dbPicRefs["p" + slideCount]["trig" + trigId]).length - 3;
+  // let commentNum = Object.keys(dbPicRefs["p" + slideCount]["trig" + trigId]).length - 3;
 
 
   firebase.database().ref("p"+picId+"/trig"+trigId+"/usercom"+userComNum).set({
@@ -703,18 +702,18 @@ function submitButtonClicked(speciality, name, title, comment){
 }
 
 function howtoClicked(){
-  var conceptDiv = $("#concept");
-  var divHeight = conceptDiv.outerHeight(true);
-  var howtoInputhere = $(".howto-inputhere");
-  var button = $(event.target);
+  let conceptDiv = $("#concept");
+  let divHeight = conceptDiv.outerHeight(true);
+  let howtoInputhere = $(".howto-inputhere");
+  let button = $(event.target);
 
-  if($(".howto-container").length == 0){
+  if($(".howto-container").length === 0){
     button.html("歩き方を閉じる");
-    var howtoContainer = $('<div class="container howto-container"></div>').appendTo(".howto-inputhere");
-    var howtoContainer_1 = $('<div class="howto-container howto-container-1"></div>').appendTo(".howto-inputhere");
-    var htc_0 = $('<div class="container"></div>').appendTo(howtoContainer_1);
-    var htc_1 = $('<div class="container"></div>').appendTo(howtoContainer_1);
-    var htc_2 = $('<div class="container"></div>').appendTo(howtoContainer_1);
+    let howtoContainer = $('<div class="container howto-container"></div>').appendTo(".howto-inputhere");
+    let howtoContainer_1 = $('<div class="howto-container howto-container-1"></div>').appendTo(".howto-inputhere");
+    let htc_0 = $('<div class="container"></div>').appendTo(howtoContainer_1);
+    let htc_1 = $('<div class="container"></div>').appendTo(howtoContainer_1);
+    let htc_2 = $('<div class="container"></div>').appendTo(howtoContainer_1);
     $('<h2 class="howto-title">歩き方</h2>').appendTo(howtoContainer);
     $('<p class="howto-h2">Step1　写真を選ぶ</p>').appendTo(htc_0);
     $('<p>全6枚の筑波大学構内の写真から、視点をみたいものを選んでください。</p>').appendTo(htc_0);
@@ -729,14 +728,14 @@ function howtoClicked(){
     $('<p>紫色が知識人の視点、オレンジ色がみなさんの視点になっています。</p>').appendTo(htc_2);
 
 
-    var containerHeight = howtoContainer.outerHeight(true) + howtoContainer_1.outerHeight(true);
+    let containerHeight = howtoContainer.outerHeight(true) + howtoContainer_1.outerHeight(true);
 
     howtoInputhere.css("height", "0");
     howtoContainer.fadeIn("slow");
     howtoInputhere.animate({height: containerHeight});
   }else{
     button.html("歩き方を見る");
-    var howtoContainer = $(".howto-container");
+    let howtoContainer = $(".howto-container");
     howtoContainer.fadeOut("slow").queue(function(){
 
     });;
@@ -748,8 +747,8 @@ function howtoClicked(){
 }
 
 function prepImages(){
-  for(var i=0; i<slideImg.length; i++){
-    var newImg = $('<img class="sshow" src="'+slideImg[i]+'">');
+  for(let i=0; i<slideImg.length; i++){
+    let newImg = $('<img class="sshow" src="'+slideImg[i]+'">');
     images.push(newImg);
   }
 }
@@ -773,17 +772,17 @@ $(window).on('load', function() {
 function prepSlideshow(){
 
   slideDiv = $("#sshow_div");
-  var slideWidth = $(window).width()*0.75;
-  var picCenterDiv = $('<div class="pic-div" id="pic-center"></div>').appendTo(slideDiv);
-  var picRightDiv = $('<div class="pic-div" id="pic-right"></div>').appendTo(slideDiv);
-  var picLeftDiv = $('<div class="pic-div" id="pic-left"></div>').appendTo(slideDiv);
-  var picCenter = images[0].appendTo(picCenterDiv);
-  var picRight = images[1].appendTo(picRightDiv);
-  var picLeft = images[10].appendTo(picLeftDiv);
+  let slideWidth = $(window).width()*0.75;
+  let picCenterDiv = $('<div class="pic-div" id="pic-center"></div>').appendTo(slideDiv);
+  let picRightDiv = $('<div class="pic-div" id="pic-right"></div>').appendTo(slideDiv);
+  let picLeftDiv = $('<div class="pic-div" id="pic-left"></div>').appendTo(slideDiv);
+  let picCenter = images[0].appendTo(picCenterDiv);
+  let picRight = images[1].appendTo(picRightDiv);
+  let picLeft = images[10].appendTo(picLeftDiv);
 
 
-  var rightButton = $('<div class="sshow-button"></div>').appendTo(slideDiv);
-  var leftButton = $('<div class="sshow-button"></div>').appendTo(slideDiv);
+  let rightButton = $('<div class="sshow-button"></div>').appendTo(slideDiv);
+  let leftButton = $('<div class="sshow-button"></div>').appendTo(slideDiv);
 
   picRightDiv.css("left", slideWidth);
   picLeftDiv.css("left", -slideWidth);
@@ -800,8 +799,8 @@ function prepSlideshow(){
 
   rightButton.on('mousedown', function(){
     slideCount += 1;
-    var picNewDiv =  $('<div class="pic-div" id="pic-new"></div>').appendTo(slideDiv);
-    var picNew = images[slideCountNormalize(slideCount+1)].appendTo(picNewDiv);
+    let picNewDiv =  $('<div class="pic-div" id="pic-new"></div>').appendTo(slideDiv);
+    let picNew = images[slideCountNormalize(slideCount+1)].appendTo(picNewDiv);
     picNewDiv.css("left", slideWidth * 2);
 
 
@@ -828,7 +827,7 @@ function prepSlideshow(){
 
   });
 
-  // var centerWidth, leftWidth, rightWidth;
+  // let centerWidth, leftWidth, rightWidth;
   //
   // picCenter.bind("load",function(){
   //   centerWidth = picCenter.width();
@@ -860,7 +859,7 @@ function prepSlideshow(){
   //     slideCountPlus -= (slideImg.length);
   //   }
   //   console.log("centerwidth: "+centerWidth+" leftWidth: "+leftWidth + " rightWidth: "+rightWidth);
-  //   var picNew = $('<img class="sshow">').appendTo(slideDiv);
+  //   let picNew = $('<img class="sshow">').appendTo(slideDiv);
   //   picNew.css("left", centerWidth + 30 + rightWidth + 30 + "px");
   //   picNew.attr("src", '');
   //   picNew.on('load', function(){
@@ -870,10 +869,10 @@ function prepSlideshow(){
   //     console.log("rightWidth: ", rightWidth);
   //   });
   //   picNew.attr("src", slideImg[slideCountPlus]);
-  //   var leftPosTarget = -(leftWidth+30+centerWidth)+"px";
-  //   var centerPosTarget =  -(30+centerWidth)+"px";
-  //   var rightPosTarget = "0px";
-  //   var newPosTarget = centerWidth+30+"px";
+  //   let leftPosTarget = -(leftWidth+30+centerWidth)+"px";
+  //   let centerPosTarget =  -(30+centerWidth)+"px";
+  //   let rightPosTarget = "0px";
+  //   let newPosTarget = centerWidth+30+"px";
   //   picLeft.animate({left: leftPosTarget}).queue(function(){
   //     picLeft.remove();
   //     picLeft = picCenter.attr("id","pic-left");
@@ -904,8 +903,8 @@ function slideCountNormalize(v){
 
 function addFlickity(){
   slideDiv = $(".sshow_container");
-  var rightButton = $('<div class="sshow-button"></div>').appendTo(slideDiv);
-  var leftButton = $('<div class="sshow-button"></div>').appendTo(slideDiv);
+  let rightButton = $('<div class="sshow-button"></div>').appendTo(slideDiv);
+  let leftButton = $('<div class="sshow-button"></div>').appendTo(slideDiv);
 
 
   rightButton.css("left", '79vw');
@@ -966,10 +965,10 @@ function addFlickity(){
   });
 }
 
-// var isStatic = 0 ;
-// var picCenters = document.getElementsByClassName("pic-div");
+// let isStatic = 0 ;
+// let picCenters = document.getElementsByClassName("pic-div");
 //
-// for (var i=0; i < picCenters.length; i++) {
+// for (let i=0; i < picCenters.length; i++) {
 //
 //   picCenters[i].onmousedown = function () {
 //     isStatic = 1;
@@ -1002,7 +1001,7 @@ function addFlickity(){
 //   }
 // }
 
-var easeInOutQuad = new SmoothScroll('[data-easing="easeInOutQuad"]', {easing: 'easeInOutQuad'});
+let easeInOutQuad = new SmoothScroll('[data-easing="easeInOutQuad"]', {easing: 'easeInOutQuad'});
 
 //responsive
 $(window).on('load resize', function(){
@@ -1014,7 +1013,7 @@ $(window).on('load resize', function(){
     $("#nav_bar").hide();
     $(".name_txt p").html("知識人と歩く<br>筑波大学");
     $(".scroll_message").show();
-    var hamButton = $('<img class="ham-button" src=img/misc-icon.png>').appendTo($("#title"));
+    let hamButton = $('<img class="ham-button" src=img/misc-icon.png>').appendTo($("#title"));
     hamButton.on('mousedown', function(){
       hamButtonClicked();
     });
@@ -1022,8 +1021,8 @@ $(window).on('load resize', function(){
 });
 
 function hamButtonClicked(){
-  var overlay = $('.ham-overlay');
-  var closeButton = $('.phone-close.ham-close');
+  let overlay = $('.ham-overlay');
+  let closeButton = $('.phone-close.ham-close');
   overlay.fadeIn('slow');
   $('.ham-button').fadeOut('slow');
   $(".ham-menu").fadeIn('slow');
@@ -1045,7 +1044,7 @@ function hamButtonClose(){
 function getParam(name, url) {
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+    let regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
         results = regex.exec(url);
     if (!results) return null;
     if (!results[2]) return '';

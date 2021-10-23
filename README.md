@@ -3,6 +3,8 @@
 wip is here https://nuink.github.io/TisikijinWEB/
 
 ## changelog
+### 10/23_1 remove "==", "var"
+・==とvarを===とletに置き換えた<br>
 ### 10/23 for xss
 ・xss対策<br>
 ・文字置換で対応 <,>をそれぞれ全角＜,＞に置換するようにした<br>
