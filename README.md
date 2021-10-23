@@ -3,6 +3,8 @@
 wip is here https://nuink.github.io/TisikijinWEB/
 
 ## changelog
+### 10/23_2 add gitignore
+・TIGWEBのgitignoreをこちらに流用した<br>
 ### 10/23_1 remove "==", "var"
 ・==とvarを===とletに置き換えた<br>
 ### 10/23 for xss
