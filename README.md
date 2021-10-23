@@ -1,10 +1,12 @@
 # 知識人WEB
 
-wip is here https://nuink.github.io/Tsukuba-intellectual/
+wip is here https://nuink.github.io/tsukuba.intellectual/
 
 ## changelog
+### 10/23_4 css fixed
+・h2のボーダー細くした<br>
 ### 10/23_3 various fix
-・企画内ででた修正案を適用<br?
+・企画内ででた修正案を適用<br>
 ### 10/23_2 add gitignore
 ・TIGWEBのgitignoreをこちらに流用した<br>
 ### 10/23_1 remove "==", "var"

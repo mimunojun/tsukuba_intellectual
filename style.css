@@ -254,7 +254,8 @@ div{
   font-weight: 900;
   font-size: 45px;
   color:var(--t-black);
-  border-bottom: solid 12px var(--accent);
+  border-bottom: solid 7px var(--accent);
+  padding-bottom: 5px;
   margin-bottom: 30px;
 }
 
@@ -278,7 +279,8 @@ div{
   font-weight: 900;
   font-size: 45px;
   color:var(--t-white);
-  border-bottom: solid 12px var(--accent);
+  border-bottom: solid 7px var(--accent);
+  padding-bottom: 5px;
 }
 
 #content .container{
@@ -401,7 +403,8 @@ div{
   font-weight: 900;
   font-size: 45px;
   color:var(--t-black);
-  border-bottom: solid 12px var(--accent);
+  border-bottom: solid 7px var(--accent);
+  padding-bottom: 5px;
 }
 
 #shoutout .member{
@@ -1079,7 +1082,8 @@ b{
 
   #concept h2{
     font-size: 7vw;
-    border-bottom: solid 6px var(--accent);
+    border-bottom: solid 7px var(--accent);
+    padding-bottom: 5px;
     width: 13em;
   }
 
@@ -1096,7 +1100,8 @@ b{
 
   #content h2{
     font-size: 7vw;
-    border-bottom: solid 6px var(--accent);
+    border-bottom: solid 7px var(--accent);
+    padding-bottom: 5px;
   }
 
   #shoutout{
@@ -1105,7 +1110,8 @@ b{
 
   #shoutout h2{
     font-size: 7vw;
-    border-bottom: solid 6px var(--accent);
+    border-bottom: solid 7px var(--accent);
+    padding-bottom: 5px;
   }
 
   #shoutout .member{
