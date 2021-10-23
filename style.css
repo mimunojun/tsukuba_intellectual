@@ -141,6 +141,7 @@ div{
 }
 
 .tig{
+  z-index: 10;
   position: absolute;
   color: var(--t-white);
   text-align: left;
@@ -567,6 +568,14 @@ div{
     position: absolute;
 }
 
+.close-button-right{
+  right: -33px;
+}
+
+.small{
+  font-size: 16px;
+}
+
 .misc-button{
   position: absolute;
   bottom: 10px;
@@ -651,7 +660,7 @@ div{
 .comment-title{
 
   color:white;
-  font-size: 30px;
+  font-size: 26px;
   margin-left: 30px;
   padding-left: 15px;
   border-left: var(--accent) solid 5px;
@@ -694,7 +703,7 @@ div{
 
 .comment-text{
   color:white;
-  font-size: 22px;
+  font-size: 18px;
   margin: 20px;
 }
 
@@ -1190,7 +1199,9 @@ b{
   }
 
   .misc-button{
-    bottom: -23px;
+    height: 5vw;
+    bottom: -26px;
+    width: 5vw;
   }
 
   .bottom-div{

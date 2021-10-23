@@ -54,6 +54,8 @@ const loadIntervalId = setInterval(() =>{
         $('.cover').height(hSize); // アドレスバーを除いたサイズを付与
       }else{
         $('#title').height($(window).height());
+        $('.scroll_message').hide();
+
       }
       $("body").removeClass("no-vscroll");
       clearInterval(loadIntervalId);　//intervalIdをclearIntervalで指定している
@@ -170,10 +172,17 @@ function slideClicked(){
       modalOverlay.fadeIn("slow");
       picDiv.fadeIn();
 
-      let closeButton = $('<img class="close-button" src=img/times.png>').appendTo($("#real-pic-div"));
-      closeButton.on('mousedown', function(){
-        bgClicked();
-      });
+      if($(window).width() >= 1200){
+        let closeButton = $('<img class="close-button close-button-right" src=img/times-white.png>').appendTo($("#real-pic-div"));
+        closeButton.on('mousedown', function(){
+          bgClicked();
+        });
+      }else{
+        let closeButton = $('<img class="close-button" src=img/times.png>').appendTo($("#real-pic-div"));
+        closeButton.on('mousedown', function(){
+          bgClicked();
+        });
+      }
 
       let miscButton = $('<img class="misc-button" src=img/misc-icon.png>').appendTo($("#real-pic-div"));
       miscButton.on('mousedown', function(){
