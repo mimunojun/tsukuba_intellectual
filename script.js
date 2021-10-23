@@ -580,7 +580,11 @@ function newComButtonClicked(){
 
     submitButton.click(function(){
       if(tb_speciality.val().length * tb_name.val().length * tb_title.val().length * tb_comment.val().length != 0){
-        preSubmitButtonClicked(tb_speciality.val(), tb_name.val(), tb_title.val(), tb_comment.val());
+        var specialityTextFix = tb_speciality.val().replace(/</g, '＜').replace(/>/g, '＞').replace(/\r?\n/g, ' ');
+        var nameTextFix = tb_name.val().replace(/</g, '＜').replace(/>/g, '＞').replace(/\r?\n/g, ' ');
+        var titleTextFix = tb_title.val().replace(/</g, '＜').replace(/>/g, '＞').replace(/\r?\n/g, ' ');
+        var commentTextFix = tb_comment.val().replace(/</g, '＜').replace(/>/g, '＞').replace(/\r?\n/g, '<br>');
+        preSubmitButtonClicked(specialityTextFix, nameTextFix, titleTextFix, commentTextFix);
       }else{
         if(tb_speciality.val().length == 0){
           tb_speciality.css('background-color', 'var(--caution)');
