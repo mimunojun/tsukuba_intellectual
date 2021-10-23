@@ -1,6 +1,6 @@
 # 知識人WEB
 
-wip is here https://nuink.github.io/tsukuba.intellectual/
+wip is here https://nuink.github.io/tsukuba_intellectual/
 
 ## changelog
 ### 10/23_4 css fixed
