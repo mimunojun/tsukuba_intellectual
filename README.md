@@ -6,7 +6,7 @@ wip is here https://nuink.github.io/TisikijinWEB/
 ### 10/23 for xss
 ・xss対策<br>
 ・文字置換で対応 <,>をそれぞれ全角＜,＞に置換するようにした<br>
-・改行コード を <br> に置換するようにした<br>
+・改行コード を br に置換するようにした<br>
 ### 10/19_2 css
 ・css調整した<br>
 ### 10/19 humberger-menu favicon
