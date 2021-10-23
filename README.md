@@ -1,8 +1,10 @@
 # 知識人WEB
 
-wip is here https://nuink.github.io/TisikijinWEB/
+wip is here https://nuink.github.io/Tsukuba-intellectual/
 
 ## changelog
+### 10/23_3 various fix
+・企画内ででた修正案を適用<br?
 ### 10/23_2 add gitignore
 ・TIGWEBのgitignoreをこちらに流用した<br>
 ### 10/23_1 remove "==", "var"
