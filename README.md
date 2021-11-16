@@ -3,6 +3,9 @@
 wip is here https://nuink.github.io/tsukuba_intellectual/
 
 ## changelog
+### 11/17 closed
+・投稿ボタンの削除<br>
+・それにともなう説明文の修正<br>
 ### 10/23_5 typo fixed
 ・表記ミスを直した<br>
 ### 10/23_4 css fixed

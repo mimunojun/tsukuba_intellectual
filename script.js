@@ -426,8 +426,8 @@ function triggerClicked(e){
 
 
 
-  let newComButton = $('<button class="new-com-button">新たな視点を投稿する</button>').appendTo(div);
-  newComButton.on('mousedown', newComButtonClicked);
+  // let newComButton = $('<button class="new-com-button">新たな視点を投稿する</button>').appendTo(div);
+  // newComButton.on('mousedown', newComButtonClicked);
 
 }
 
@@ -731,10 +731,10 @@ function howtoClicked(){
     $('<p class="howto-h2">Step2　知識人の視点を見る</p>').appendTo(htc_1);
     $('<p>様々な知識人の視点が写真のいたるところに隠されています。</p>').appendTo(htc_1);
     $('<p>クリックして個性豊かな視点を探してみてください。</p>').appendTo(htc_1);
-    $('<p class="howto-h2">Step3　あなたならではの視点を共有しよう</p>').appendTo(htc_2);
+    $('<p class="howto-h2">Step3　面白い視点には「いいね」を押そう</p>').appendTo(htc_2);
     $('<p>面白い視点を見つけたら、ぜひいいねボタンを押してください。</p>').appendTo(htc_2);
-    $('<p>知識人の着眼点に対する"あなたならでは"の視点も募集中！</p>').appendTo(htc_2);
-    $('<p>紫色が知識人の視点、オレンジ色がみなさんの視点になっています。</p>').appendTo(htc_2);
+    // $('<p>知識人の着眼点に対する"あなたならでは"の視点も募集中！</p>').appendTo(htc_2);
+    // $('<p>紫色が知識人の視点、オレンジ色がみなさんの視点になっています。</p>').appendTo(htc_2);
 
 
     let containerHeight = howtoContainer.outerHeight(true) + howtoContainer_1.outerHeight(true);
