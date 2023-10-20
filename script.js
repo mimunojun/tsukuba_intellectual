@@ -61,9 +61,9 @@ const slidePointDiv = $("#points")
 const slidePoint = $(".slide-point");
 const modalOverlay = $('<div id="modal-overlay" href="javascript:" onclick="bgClicked();"></div>').appendTo("body");
 const picTriggers = [];
-const dbPicRefs = [];
 const slidePoints = [];
 const slideCount = getParam('sc');
+let dbPicRefs;
 let mainPic;
 let picDiv;
 let picRef;
