@@ -11,8 +11,6 @@ window.onload = function(){
 //読み込み完了時
 window.onload = function () {
     prepReading();  //DBreading
-
-
 };
 
 let loadProgress = 0;
@@ -128,20 +126,20 @@ function slideClicked(){
         });
       }
 
-      let miscButton = $('<img class="misc-button" src=img/misc-icon.png>').appendTo($("#real-pic-div"));
+      const miscButton = $('<img class="misc-button" src=img/misc-icon.png>').appendTo($("#real-pic-div"));
       miscButton.on('mousedown', function(){
         miscButtonClicked();
       });
 
-      let credit = "撮影: " + dbPicRefs["p" + slideCount]['misc']['credit'];
-      let creditP = $('<p class="pic-credit"></p>').html(credit).appendTo($("#real-pic-div"));
+      const credit = "撮影: " + dbPicRefs["p" + slideCount]['misc']['credit'];
+      $('<p class="pic-credit"></p>').html(credit).appendTo($("#real-pic-div"));
 
-      let counterDiv = $('<div class="counter-box"></div>').appendTo($("#real-pic-div"));
-      let trigerNum = Object.keys(dbPicRefs['p'+slideCount]).length - 1;
+      const counterDiv = $('<div class="counter-box"></div>').appendTo($("#real-pic-div"));
+      const trigerNum = Object.keys(dbPicRefs['p'+slideCount]).length - 1;
       counterP = $('<p class="white"></p>').html('見つけた視点: ' + counter+'/'+trigerNum).appendTo(counterDiv);
       counterDiv.fadeIn();
 
-      let bottomDiv = $('<div class="bottom-div"></div>').appendTo($("#real-pic-div"));
+      $('<div class="bottom-div"></div>').appendTo($("#real-pic-div"));
 
       makePicDiv(picAspRatio);
       loadTrigger(picSizeRatio);
@@ -290,7 +288,7 @@ function triggerClicked(e){
   //div.on('mousedown.commentBox', mainCommentBoxClicked);
   const trigname = dbPicRefs["p" + slideCount]["trig" + id]["trigname"];
   const trignameDiv = $('<div class="comment-trigname"></div>').appendTo(div);
-  const trignameP =  $('<p></p>').html(trigname).appendTo(trignameDiv);
+  $('<p></p>').html(trigname).appendTo(trignameDiv);
   $("body").append(div);
   div.fadeIn();
   mousePos = [e.clientX, e.clientY];
@@ -330,15 +328,15 @@ function triggerClicked(e){
     const name = dbPicRefs["p" + slideCount]["trig" + id]["com"+i]["name"];
     const like = dbPicRefs["p" + slideCount]["trig" + id]["com"+i]["like"];
 
-    const specialityP = $('<p class="comment-speciality"></p>').html(speciality).appendTo(newdiv);
-    const nameP = $('<p class="comment-name"></p>').html(name).appendTo(newdiv);
+    $('<p class="comment-speciality"></p>').html(speciality).appendTo(newdiv);
+    $('<p class="comment-name"></p>').html(name).appendTo(newdiv);
 
-    const titleP = $('<p class="comment-title"></p>').html(title).appendTo(newdiv);
-    const textP = $('<p class="comment-text"></p>').html(text).appendTo(newdiv);
+    $('<p class="comment-title"></p>').html(title).appendTo(newdiv);
+    $('<p class="comment-text"></p>').html(text).appendTo(newdiv);
 
     const likeButton =  $('<i class="fas fa-thumbs-up comment-like-button" href="javascript:" liked="false"></i>').appendTo(newdiv);
     likeButton.on('mousedown', likeClicked);
-    const likeCount =  $('<span class ="comment-like-count"></span>').html("  "+like).appendTo(newdiv);
+    $('<span class ="comment-like-count"></span>').html("  "+like).appendTo(newdiv);
   }
 
   for(let i=0; dbPicRefs["p" + slideCount]["trig" + id]["usercom"+i]!=null; i++){
@@ -352,15 +350,15 @@ function triggerClicked(e){
     const name = dbPicRefs["p" + slideCount]["trig" + id]["usercom"+i]["name"];
     const like = dbPicRefs["p" + slideCount]["trig" + id]["usercom"+i]["like"];
 
-    const specialityP = $('<p class="comment-speciality com-from-user"></p>').html(speciality).appendTo(newdiv);
-    const nameP = $('<p class="comment-name"></p>').html(name).appendTo(newdiv);
+    $('<p class="comment-speciality com-from-user"></p>').html(speciality).appendTo(newdiv);
+    $('<p class="comment-name"></p>').html(name).appendTo(newdiv);
 
-    const titleP = $('<p class="comment-title com-from-user"></p>').html(title).appendTo(newdiv);
-    const textP = $('<p class="comment-text"></p>').html(text).appendTo(newdiv);
+    $('<p class="comment-title com-from-user"></p>').html(title).appendTo(newdiv);
+    $('<p class="comment-text"></p>').html(text).appendTo(newdiv);
 
     const likeButton =  $('<i class="fas fa-thumbs-up comment-like-button" href="javascript:" liked="false"></i>').appendTo(newdiv);
     likeButton.on('mousedown', likeClicked);
-    let likeCount =  $('<span class ="comment-like-count"></span>').html("  "+like).appendTo(newdiv);
+    $('<span class ="comment-like-count"></span>').html("  "+like).appendTo(newdiv);
   }
 
   if(obj.attr('clicked')==='false'){
@@ -387,10 +385,10 @@ function miscButtonClicked(){
     const triggerNum = Object.keys(dbPicRefs['p'+slideCount]).length - 1;
 
 
-    const creditP = $('<p class="white misc-text"></p>').html("撮影: " +  credit).appendTo(div);
-    const dateP = $('<p class="white misc-text"></p>').html("撮影日: " + date).appendTo(div);
-    const placeP = $('<p class="white misc-text"></p>').html("場所: " + place).appendTo(div);
-    const shareButton = $('<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>').appendTo(div);
+    $('<p class="white misc-text"></p>').html("撮影: " +  credit).appendTo(div);
+    $('<p class="white misc-text"></p>').html("撮影日: " + date).appendTo(div);
+    $('<p class="white misc-text"></p>').html("場所: " + place).appendTo(div);
+    $('<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>').appendTo(div);
     shareButton.attr('data-url', 'https://nuink.github.io/TisikijinWEB/'+'?sc='+slideCount);
     shareButton.attr('data-text', '筑波大学の「'+place+'」の景色を見ています。専門家の視点を'+triggerNum+'個中'+counter+'個発見しました！')
     div.fadeIn();
@@ -480,23 +478,23 @@ function newComButtonClicked(){
     "・その他不適切だと判断されるもの"
   ]
   if($('.new-com-div').length === 0){
-    let div = $('<div class="comment-box new-com-div"></div>').appendTo("body");
+    const div = $('<div class="comment-box new-com-div"></div>').appendTo("body");
     div.attr('trig-id', trigId);
-    let title = $('<p class="new-com-title"></p>').html("新たな視点の投稿").appendTo(".new-com-div");
-    let description = $('<p class="new-com-description"></p>').html(description_text).appendTo(".new-com-div");
-    let cautionDiv = $('<div class="new-com-caution-div"></div>').appendTo(".new-com-div");
+    $('<p class="new-com-title"></p>').html("新たな視点の投稿").appendTo(".new-com-div");
+    $('<p class="new-com-description"></p>').html(description_text).appendTo(".new-com-div");
+    const cautionDiv = $('<div class="new-com-caution-div"></div>').appendTo(".new-com-div");
     for(let i=0; i<caution_text.length; i++){
-      let caution = $('<p class="new-com-caution"></p>').html(caution_text[i]).appendTo(cautionDiv);
+      $('<p class="new-com-caution"></p>').html(caution_text[i]).appendTo(cautionDiv);
     }
     $('<div class="nice-wrap"><input class="nice-textbox" id="tb_speciality" type="text"/><label class="nice-label" >あなたを一言で表すと</label></div>').appendTo(".new-com-div");
     $('<div class="nice-wrap"><input class="nice-textbox" id="tb_name" type="text"/><label class="nice-label" >あなたのニックネーム</label></div>').appendTo(".new-com-div");
     $('<div class="nice-wrap"><input class="nice-textbox" id="tb_title" type="text"/><label class="nice-label" >視点のタイトル</label></div>').appendTo(".new-com-div");
     $('<div class="nice-wrap"><textarea rows=5 class="nice-textbox" id="tb_comment" type="text"/><label class="nice-label" >どんな視点？</label></div>').appendTo(".new-com-div");
 
-    let tb_speciality = $("#tb_speciality");
-    let tb_name = $("#tb_name");
-    let tb_title = $("#tb_title");
-    let tb_comment = $("#tb_comment");
+    const tb_speciality = $("#tb_speciality");
+    const tb_name = $("#tb_name");
+    const tb_title = $("#tb_title");
+    const tb_comment = $("#tb_comment");
 
     $('.nice-textbox').blur(function() {
 
@@ -581,16 +579,16 @@ function mainCommentBoxClicked(){
 function preSubmitButtonClicked(speciality, name, title, comment){
   if($(".new-presubmitted-div").length == 0){
     const confirmDiv = $('<div class="comment-box new-presubmitted-div"></div>').appendTo("body");
-    const confirmTextP = $('<p class="new-com-description"></p>').html("あなたの視点は以下のように表示され、公開されます。").appendTo(confirmDiv);
+    $('<p class="new-com-description"></p>').html("あなたの視点は以下のように表示され、公開されます。").appendTo(confirmDiv);
 
     const newdiv = $('<div class="comment-div"></div>').appendTo(confirmDiv);
-    const specialityP = $('<p class="comment-speciality com-from-user"></p>').html(speciality).appendTo(newdiv);
-    const nameP = $('<p class="comment-name"></p>').html(name).appendTo(newdiv);
-    const titleP = $('<p class="comment-title com-from-user"></p>').html(title).appendTo(newdiv);
-    const textP = $('<p class="comment-text"></p>').html(comment).appendTo(newdiv);
+    $('<p class="comment-speciality com-from-user"></p>').html(speciality).appendTo(newdiv);
+    $('<p class="comment-name"></p>').html(name).appendTo(newdiv);
+    $('<p class="comment-title com-from-user"></p>').html(title).appendTo(newdiv);
+    $('<p class="comment-text"></p>').html(comment).appendTo(newdiv);
 
-    const likeButton =  $('<i class="fas fa-thumbs-up comment-like-button" href="javascript:" liked="false"></i>').appendTo(newdiv);
-    const likeCount =  $('<span class ="comment-like-count"></span>').html(" 0").appendTo(newdiv);
+    $('<i class="fas fa-thumbs-up comment-like-button" href="javascript:" liked="false"></i>').appendTo(newdiv);
+    $('<span class ="comment-like-count"></span>').html(" 0").appendTo(newdiv);
 
     const confirmButton = $('<button class="new-com-button new-com-presubmit">確認</button>').appendTo(confirmDiv);
     const cancelButton = $('<p class="new-com-presubmit-cancel">キャンセル</p>').appendTo(confirmDiv);
@@ -620,7 +618,7 @@ function submitButtonClicked(speciality, name, title, comment){
     this.remove();
   });
   const div = $('<div class="comment-box new-submitted-div"></div>').appendTo("body");
-  const text = $('<p class="new-submitted-text"></p>').html("投稿されました。").appendTo(".new-submitted-div");
+  $('<p class="new-submitted-text"></p>').html("投稿されました。").appendTo(".new-submitted-div");
 
   $(function(){
     setTimeout(function(){
@@ -650,7 +648,7 @@ function submitButtonClicked(speciality, name, title, comment){
 
 function howtoClicked(){
   const conceptDiv = $("#concept");
-  const divHeight = conceptDiv.outerHeight(true);
+  conceptDiv.outerHeight(true);
   const howtoInputhere = $(".howto-inputhere");
   const button = $(event.target);
 
@@ -723,9 +721,9 @@ function prepSlideshow(){
   const picCenterDiv = $('<div class="pic-div" id="pic-center"></div>').appendTo(slideDiv);
   const picRightDiv = $('<div class="pic-div" id="pic-right"></div>').appendTo(slideDiv);
   const picLeftDiv = $('<div class="pic-div" id="pic-left"></div>').appendTo(slideDiv);
-  const picCenter = images[0].appendTo(picCenterDiv);
-  const picRight = images[1].appendTo(picRightDiv);
-  const picLeft = images[10].appendTo(picLeftDiv);
+  images[0].appendTo(picCenterDiv);
+  images[1].appendTo(picRightDiv);
+  images[10].appendTo(picLeftDiv);
 
 
   const rightButton = $('<div class="sshow-button"></div>').appendTo(slideDiv);
@@ -747,7 +745,7 @@ function prepSlideshow(){
   rightButton.on('mousedown', function(){
     slideCount += 1;
     const picNewDiv =  $('<div class="pic-div" id="pic-new"></div>').appendTo(slideDiv);
-    const picNew = images[slideCountNormalize(slideCount+1)].appendTo(picNewDiv);
+    images[slideCountNormalize(slideCount+1)].appendTo(picNewDiv);
     picNewDiv.css("left", slideWidth * 2);
 
 
