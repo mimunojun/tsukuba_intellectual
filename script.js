@@ -1,26 +1,12 @@
-
-//
-// function imageJustSize() {
-//   var title = document.getElementById('title');
-//   var winH = window.innerHeight;
-//   title.style.height = winH + 'px';
-// }
-
-
-let images = new Array();
-let slideImg = new Array("img/00.jpg","img/02.jpeg","img/03.jpeg","img/06.jpg","img/07.jpg","img/08.jpg",);
+const images = new Array();
+const slideImg = new Array("img/00.jpg","img/02.jpeg","img/03.jpeg","img/06.jpg","img/07.jpg","img/08.jpg",);
 window.onload = function(){
-
     // 画像プリロード
-    for (i = 0; i < images.length; i++){
-        let img = document.createElement('img');
+    for (let i = 0; i < images.length; i++){
+        const img = document.createElement('img');
         img.src = slideImg[i];
     }
-
 }
-
-
-
 
 // imageJustSize();
 
