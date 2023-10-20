@@ -408,9 +408,6 @@ function prepReading(){
     picRef = firebase.database().ref();
     picRef.on('value', (snapshot) => {
         dbPicRefs = snapshot.val();
-        //console.log(dbPicRefs);
-
-        //console.log(trig1);
     });
 }
 
